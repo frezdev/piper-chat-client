@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Open up App.js to start working on your app!</Text>
+      <Text style={styles.text}>PiperChat</Text>
       <StatusBar style='light' />
     </View>
   );
@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: '#fff'
+    color: '#fff',
+    fontSize: '40px',
+    fontWeight: '600'
   }
 });
