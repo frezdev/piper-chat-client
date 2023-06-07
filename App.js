@@ -1,25 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
+import { NativeBaseProvider, Box, Button } from "native-base";
+import { NavigationContainer } from '@react-navigation/native'
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>PiperChat</Text>
-      <StatusBar style='light' />
-    </View>
+    <NativeBaseProvider>
+      <Box>Hello world</Box>
+      <Button>PiperChat</Button>
+      <StatusBar style='inverted' />
+    </NativeBaseProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    color: '#fff',
-    fontSize: '40px',
-    fontWeight: '600'
-  }
-});
+
