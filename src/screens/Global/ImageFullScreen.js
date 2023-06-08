@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-export function RegisterScreen () {
+export function ImageFullScreen () {
   return (
     <View>
-      <Text>RegisterScreen</Text>
+      <Text>ImageFullScreen</Text>
     </View>
   )
 }

@@ -1,16 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider, Box, Button } from "native-base";
+import React from 'react'
+import { StatusBar } from 'expo-status-bar'
+import { StyleSheet, Text, SafeAreaView } from 'react-native'
+import { NativeBaseProvider } from 'native-base'
 import { NavigationContainer } from '@react-navigation/native'
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+export default function App () {
   return (
-    <NativeBaseProvider>
-      <Box>Hello world</Box>
-      <Button>PiperChat</Button>
-      <StatusBar style='inverted' />
-    </NativeBaseProvider>
-  );
+    <NavigationContainer>
+      <NativeBaseProvider>
+        <SafeAreaView style={{ backgroundColor: '#0f0d16', height: '100%' }}>
+          <StatusBar style='inverted' />
+          <Text style={styles.text}>PiperChat</Text>
+        </SafeAreaView>
+      </NativeBaseProvider>
+    </NavigationContainer>
+  )
 }
-
-
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 50,
+    fontWeight: '700',
+    backgroundColor: '#0f0d16',
+    color: '#fff',
+    textAlign: 'center'
+  }
+})

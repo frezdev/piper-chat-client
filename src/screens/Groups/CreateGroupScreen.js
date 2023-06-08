@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-export function RegisterScreen () {
+export function CreateGroupScreen () {
   return (
     <View>
-      <Text>RegisterScreen</Text>
+      <Text>CreateGroupScreen</Text>
     </View>
   )
 }
