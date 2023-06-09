@@ -1,17 +1,8 @@
 import React from 'react'
-import { View, Text, TextInput } from 'react-native'
 import { AuthNavigation } from './stacks'
-
-function AppNavigation () {
-  return (
-    <View>
-      <Text>App Navigation</Text>
-      <TextInput />
-    </View>
-  )
-}
+import { AppNavigation } from './AppNavigation'
 
 export function HandlerNavigation () {
-  const user = null
+  const user = { name: 'carlos' }
   return user ? <AppNavigation /> : <AuthNavigation />
 }

@@ -23,7 +23,7 @@ const chats = {
 
 const groups = {
   root: 'GroupRoot',
-  chatGroupScreen: 'ChatGroupScreen',
+  groupScreen: 'GroupScreen',
   createGroupScreen: 'CreateGroupScreen'
 }
 

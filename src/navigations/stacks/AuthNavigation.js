@@ -2,6 +2,7 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { screens } from '../../utils/screens'
 import { IconBack } from '../../components/Navigation'
+import { styles } from '../Styles.styles'
 import {
   AuthStartScreen,
   RegisterScreen,
@@ -14,7 +15,9 @@ export function AuthNavigation () {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerLeft: IconBack
+        ...styles.stackNavigationStyles,
+        headerLeft: IconBack,
+        headerTitleAlign: 'center'
       }}
     >
       <Stack.Screen
