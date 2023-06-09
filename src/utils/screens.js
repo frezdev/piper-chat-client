@@ -1,43 +1,45 @@
 const auth = {
   authStartScreen: 'AuthStartScreen',
-  loginScreen: 'LoginScreem',
-  registesScreen: 'ReggisterScreen'
+  loginScreen: 'LoginScreen',
+  registerScreen: 'RegisterScreen'
 }
 
 const global = {
-  userProfileScreeb: 'userProfileScreen',
-  chatScreen: 'ChatScremm',
+  userProfileScreen: 'UserProfileScreen',
   cameraScreen: 'CameraScreen',
-  imageScreen: 'ImageScreem',
+  imageFullScreen: 'ImageFullScreen',
+  chatScreen: 'ChatScreen',
   grouScreen: 'GroupScreen',
   groupProfileScreen: 'GroupProfileScreen',
   addUserGroupScreen: 'AddUserGroupScreen',
-  changeNameGroupScreen: 'ChangeNameGroupScreen'
+  updateGroupInfoScreen: 'UpdateGroupInfoScreen'
 }
 
 const chats = {
   root: 'ChatsRoot',
-  chatScreen: 'ChatsRoot',
+  chatScreen: 'ChatsScreen',
   createChatScreem: 'CreateChatScreem'
 }
 
 const groups = {
   root: 'GroupRoot',
-  chatgroScreen: 'ChatsRoot',
-  createGroupScreem: 'CreateGroupScreem'
+  chatGroupScreen: 'ChatGroupScreen',
+  createGroupScreen: 'CreateGroupScreen'
 }
 
 const settings = {
   root: 'SettingsRoot',
-  settingScreen: 'SettingsRoot',
-  createSettingScreem: 'CreateSettingScreem',
-  updateInfoUser: 'DpdateInfoUser'
+  settingsScreen: 'SettingsScreen',
+  updateUserInfoScreen: 'UpdateUserInfoScreen'
 }
 
 export const screens = {
   auth,
-  chats,
   global,
-  groups,
-  settings
+  tab: {
+    root: 'BottonTabRoot',
+    chats,
+    groups,
+    settings
+  }
 }
