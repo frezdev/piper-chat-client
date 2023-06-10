@@ -1,4 +1,3 @@
-import React from 'react'
 import { ChevronLeftIcon, IconButton } from 'native-base'
 import { useNavigation } from '@react-navigation/native'
 

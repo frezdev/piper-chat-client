@@ -9,9 +9,9 @@ const global = {
   cameraScreen: 'CameraScreen',
   imageFullScreen: 'ImageFullScreen',
   chatScreen: 'ChatScreen',
-  grouScreen: 'GroupScreen',
+  groupScreen: 'GroupScreen',
   groupProfileScreen: 'GroupProfileScreen',
-  addUserGroupScreen: 'AddUserGroupScreen',
+  addParticipantsToGroupScreen: 'AddParticipantsToGroupScreen',
   updateGroupInfoScreen: 'UpdateGroupInfoScreen'
 }
 

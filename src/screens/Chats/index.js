@@ -1,3 +1,3 @@
 export * from './ChatScreen'
-export * from './ChatsListScrenns'
+export * from './ChatsListScreen'
 export * from './CreateChatScreen'

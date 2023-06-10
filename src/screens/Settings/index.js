@@ -1,2 +1,2 @@
-export * from './UpdateUserIser'
+export * from './UpdateUserInfo'
 export * from './SettingsScreen'

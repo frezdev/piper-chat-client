@@ -1,11 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { CreateGroupScreen, GroupsListScreen } from '../../screens/Groups'
+import { SettingsScreen, UpdateUserInfo } from '../../screens/Settings'
 import { screens } from '../../utils/screens'
 import { styles } from '../Styles.styles'
 
 const Stack = createNativeStackNavigator()
 
-export function GroupsNavigation () {
+export function SettingsNavigation () {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -13,18 +13,17 @@ export function GroupsNavigation () {
       }}
     >
       <Stack.Screen
-        name={screens.tab.groups.groupScreen}
-        component={GroupsListScreen}
-        options={{ title: 'Grupos' }}
+        name={screens.tab.settings.settingsScreen}
+        component={SettingsScreen}
+        options={{ title: 'Configuración' }}
       />
 
       <Stack.Screen
-        name={screens.tab.groups.createGroupScreen}
-        component={CreateGroupScreen}
+        name={screens.tab.settings.updateUserInfoScreen}
+        component={UpdateUserInfo}
         options={{
-          title: 'Nuevo grupo',
-          presentation: 'modal',
-          ...styles.modalStyles
+          title: 'Edita el perfil',
+          presentation: 'modal'
         }}
       />
     </Stack.Navigator>

@@ -1,9 +1,9 @@
 import { View, Text } from 'react-native'
 
-export function AuthStartScreen () {
+export function UpdateUserInfo () {
   return (
     <View>
-      <Text>AuthStartScreen</Text>
+      <Text>UpdateUserInfo</Text>
     </View>
   )
 }
