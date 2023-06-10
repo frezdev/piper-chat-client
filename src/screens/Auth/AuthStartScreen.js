@@ -1,9 +1,12 @@
 import { View, Text } from 'react-native'
+import { useAuth } from '../../hooks'
 
 export function AuthStartScreen () {
+  const auth = useAuth()
+
   return (
     <View>
-      <Text>AuthStartScreen</Text>
+      <Text style={{ color: '#fff' }}>AuthStartScreen</Text>
     </View>
   )
 }
