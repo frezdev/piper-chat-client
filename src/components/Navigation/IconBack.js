@@ -5,8 +5,8 @@ export function IconBack () {
   const navigation = useNavigation()
   return (
     <IconButton
-      icon={<ChevronLeftIcon />}
-      padding={0}
+      icon={<ChevronLeftIcon style={{ width: 23, height: 23, color: '#0088d6' }} />}
+      padding={1}
       onPress={navigation.goBack}
     />
   )
