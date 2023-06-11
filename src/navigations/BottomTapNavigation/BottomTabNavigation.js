@@ -7,6 +7,7 @@ import {
   GroupsNavigation,
   SettingsNavigation
 } from '../stacks'
+import { variables } from '../../styles/variables.styles'
 import { styles } from './BottomTabNavigation.styles'
 
 const Tab = createBottomTabNavigator()
@@ -41,7 +42,7 @@ export function ButtomTabNavigation () {
         headerShown: false,
         tabBarStyle: styles.tabBarStyle,
         tabBarInactiveTintColor: '#949798',
-        tabBarActiveTintColor: '#0088d6',
+        tabBarActiveTintColor: variables.brandColor,
         tabBarIcon: ({ color, size }) => screenIcon(route, color, size)
       })}
     >

@@ -1,9 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { dark } from '../../../Context/colorTheme'
-
-const colors = {
-  text: dark ? '#fff' : '#2a2a2a'
-}
+import { variables } from '../../../styles/variables.styles'
 
 export const styles = StyleSheet.create({
   constent: {
@@ -17,25 +13,25 @@ export const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   title: {
-    color: colors.text,
+    color: variables.textColor,
     textAlign: 'center',
     fontSize: 20
   },
   appName: {
-    color: colors.text,
+    color: variables.textColor,
     textAlign: 'center',
     fontSize: 35,
     fontWeight: 'bold',
     marginBottom: 20
   },
   description: {
-    color: colors.text,
+    color: variables.textColor,
     textAlign: 'center',
     opacity: 0.6,
     marginBottom: 10
   },
   btn: {
-    color: '#0088d6',
+    color: variables.brandColor,
     textAlign: 'center',
     marginBottom: 15,
     fontWeight: '600',
@@ -43,7 +39,7 @@ export const styles = StyleSheet.create({
     padding: 15
   },
   credits: {
-    color: colors.text,
+    color: variables.textColor,
     textAlign: 'center',
     opacity: 0.6,
     fontSize: 13,
