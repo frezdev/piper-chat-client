@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { RegisterForm } from '../../../components/Auth'
 import { styles } from './RegisterScreen.styles'
 
 export function RegisterScreen () {
@@ -9,8 +10,8 @@ export function RegisterScreen () {
       <Text style={styles.title}>
         Registrate y conectate con amigos
       </Text>
-      {/* TODO: REGISTER FORM */}
-      <Text style={{ color: '#fff' }}>Formulario</Text>
+
+      <RegisterForm />
 
       <View>
         <Text style={styles.callToAction}>

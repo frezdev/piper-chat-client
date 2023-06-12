@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     color: variables.textColor,
-    opacity: 0.6,
+    // opacity: 0.6,
     textAlign: 'center',
     fontSize: 16,
     marginVertical: 15
@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
   callToAction: {
     fontSize: 18,
     color: variables.textColor,
-    textAlign: 'center',
-    opacity: 0.6
+    textAlign: 'center'
+    // opacity: 0.6
   },
   action: {
     fontSize: 18,

@@ -27,7 +27,6 @@ export const styles = StyleSheet.create({
   description: {
     color: variables.textColor,
     textAlign: 'center',
-    opacity: 0.6,
     marginBottom: 10
   },
   btn: {
@@ -41,7 +40,6 @@ export const styles = StyleSheet.create({
   credits: {
     color: variables.textColor,
     textAlign: 'center',
-    opacity: 0.6,
     fontSize: 13,
     marginBottom: 20
   }
