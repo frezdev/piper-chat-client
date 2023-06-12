@@ -6,12 +6,12 @@ export const styles = StyleSheet.create({
     margin: 20
   },
   title: {
-    color: variables.textColor,
+    color: variables.textColorOpacity,
     marginVertical: 15
   },
   callToAction: {
     fontSize: 18,
-    color: variables.textColor,
+    color: variables.textColorOpacity,
     textAlign: 'center'
   },
   action: {
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     padding: 10
   },
   info: {
-    color: variables.textColor,
+    color: variables.textColorOpacity,
     marginVertical: 15,
     textAlign: 'center'
   }

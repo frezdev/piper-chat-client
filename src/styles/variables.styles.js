@@ -2,5 +2,8 @@ import { dark } from '../Context/colorTheme'
 
 export const variables = {
   brandColor: '#0088d6',
-  textColor: dark ? '#7b7b7b' : '#4e4b4b'
+  textColorOpacity: dark ? '#bcbcbc' : '#4b4b4b',
+  textColorNormal: dark ? '#fff' : '#000',
+  secundaryBackground: dark ? '#121212' : '#fff',
+  appBackground: dark ? '#000' : '#fff'
 }

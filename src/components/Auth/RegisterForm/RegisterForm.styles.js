@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     marginBottom: 15
   },
   input: {
-    color: variables.textColor,
+    color: variables.textColorOpacity,
     fontSize: 18,
     paddingBottom: 10,
     paddingTop: 10,

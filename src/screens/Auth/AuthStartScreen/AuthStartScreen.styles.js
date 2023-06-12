@@ -13,19 +13,19 @@ export const styles = StyleSheet.create({
     resizeMode: 'contain'
   },
   title: {
-    color: variables.textColor,
+    color: variables.textColorNormal,
     textAlign: 'center',
     fontSize: 20
   },
   appName: {
-    color: variables.textColor,
+    color: variables.textColorNormal,
     textAlign: 'center',
     fontSize: 35,
     fontWeight: 'bold',
     marginBottom: 20
   },
   description: {
-    color: variables.textColor,
+    color: variables.textColorOpacity,
     textAlign: 'center',
     marginBottom: 10
   },
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
     padding: 15
   },
   credits: {
-    color: variables.textColor,
+    color: variables.textColorOpacity,
     textAlign: 'center',
     fontSize: 13,
     marginBottom: 20

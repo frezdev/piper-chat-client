@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native'
-import { dark } from '../Context/colorTheme'
+import { variables } from '../styles/variables.styles'
 
-const darkTheme = StyleSheet.create({
+export const styles = StyleSheet.create({
   stackNavigationStyles: {
     contentStyle: {
-      backgroundColor: '#000'
+      backgroundColor: variables.appBackground
     },
     headerStyle: {
-      backgroundColor: '#121212'
+      backgroundColor: variables.secundaryBackground
     },
     headerTitleStyle: {
-      color: '#fff'
+      color: variables.textColorNormal,
+      fontSize: 18
     },
     headerTitleAlign: 'center'
   },
@@ -26,31 +27,3 @@ const darkTheme = StyleSheet.create({
     }
   }
 })
-
-const lightTheme = StyleSheet.create({
-  stackNavigationStyles: {
-    contentStyle: {
-      backgroundColor: '#fff'
-    },
-    headerStyle: {
-      backgroundColor: '#fff'
-    },
-    headerTitleStyle: {
-      color: '#000'
-    },
-    headerTitleAlign: 'center'
-  },
-  modalStyles: {
-    contentStyle: {
-      backgroundColor: '#ededed'
-    },
-    headerStyle: {
-      backgroundColor: '#ededed'
-    },
-    headerTitleStyle: {
-      color: '#fff'
-    }
-  }
-})
-
-export const styles = dark ? darkTheme : lightTheme
