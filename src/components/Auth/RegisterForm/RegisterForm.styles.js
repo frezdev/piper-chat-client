@@ -27,5 +27,11 @@ export const styles = StyleSheet.create({
     backgroundColor: variables.brandColor,
     color: '#fff',
     fontSize: 16
+  },
+  errorMessage: {
+    color: '#ff4644',
+    textAlign: 'center',
+    fontWeight: '500',
+    fontSize: 16
   }
 })
