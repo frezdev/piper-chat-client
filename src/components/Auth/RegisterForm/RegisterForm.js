@@ -7,30 +7,51 @@ import { validationSchema, initialValues } from './RegisterForm.form'
 import { styles } from './RegisterForm.styles'
 
 export function RegisterForm () {
-  const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
     validateOnChange: false,
     onSubmit: async (formValues) => {
-      if (formValues.password === '' || confirmPassword === '') {
-        console.log('error')
-        return setError('Complete todos los campos')
-      }
-      console.log(formValues)
+      setLoading(formik.isSubmitting)
+      setTimeout(() => {
+        setLoading(false)
+      }, 3000)
     }
   })
+
+  const handleSubmit = () => {
+    if (formik.values.password === '' || formik.values.confirmPassword === '') {
+      return setError('Debe llenar todos los campos')
+    }
+    if (formik.values.password !== formik.values.confirmPassword) {
+      return setError('Las contraseñas no coinciden')
+    }
+    if (formik.errors.email) {
+      console.log({ email: formik.errors.email }, '33')
+      setError('Formato de email invalido')
+    }
+    console.log({ email: formik.errors.email }, '36')
+    formik.handleSubmit()
+  }
+
+  const handleChangeText = (field, value) => {
+    setError('')
+    formik.setFieldValue(field, value)
+  }
+
   return (
     <View style={styles.content}>
       <View style={styles.inputContainer}>
         <Input
-          variant={'unstyled'}
           style={[styles.input, formik.errors.email && styles.inputError]}
+          variant={'unstyled'}
           placeholder='Email'
           type='text'
           value={formik.values.email}
-          onChangeText={(text) => formik.setFieldValue('email', text)}
+          onChangeText={(text) => handleChangeText('email', text)}
         />
       </View>
       <View style={styles.inputContainer}>
@@ -40,7 +61,7 @@ export function RegisterForm () {
           placeholder='Contraseña'
           type='password'
           value={formik.values.password}
-          onChangeText={(text) => formik.setFieldValue('password', text)}
+          onChangeText={(text) => handleChangeText('password', text)}
         />
       </View>
       <View style={styles.inputContainer}>
@@ -48,21 +69,21 @@ export function RegisterForm () {
           variant={'unstyled'}
           style={styles.input}
           placeholder='Confirmar contraseña'
-          value={confirmPassword}
-          onChangeText={(text) => setConfirmPassword(text)}
           type='password'
+          value={formik.values.confirmPassword}
+          onChangeText={(text) => handleChangeText('confirmPassword', text)}
         />
       </View>
+      <Text style={{ color: '#ff4644', textAlign: 'center', fontWeight: '500', fontSize: 16 }}>{error}</Text>
       <View style={styles.buttonContainer}>
         <Button
           style={styles.button}
-          onPress={formik.handleSubmit}
-          isLoading={formik.isSubmitting}
+          onPress={handleSubmit}
+          isLoading={loading}
         >
           <Text style={styles.button}>Registrarme</Text>
         </Button>
       </View>
-      <Text style={{ color: '#fff' }}>{error}</Text>
     </View>
   )
 }
