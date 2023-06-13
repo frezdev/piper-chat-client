@@ -24,5 +24,10 @@ export const styles = StyleSheet.create({
     marginBottom: 30,
     padding: 10,
     textAlign: 'center'
+  },
+  info: {
+    color: variables.textColorOpacity,
+    marginVertical: 15,
+    textAlign: 'center'
   }
 })

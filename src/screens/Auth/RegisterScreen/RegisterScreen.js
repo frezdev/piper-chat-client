@@ -21,6 +21,10 @@ export function RegisterScreen () {
           Inicia sesión
         </Text>
       </View>
+      <Text style={styles.info}>
+        Debes tener al menos 16 años de edad
+        o estar bajo supervisión de un adulto responsable.
+      </Text>
     </View>
   )
 }
