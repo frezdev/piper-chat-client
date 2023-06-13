@@ -7,7 +7,9 @@ export const styles = StyleSheet.create({
   },
   title: {
     color: variables.textColorOpacity,
-    marginVertical: 15
+    marginVertical: 20,
+    fontSize: 18,
+    textAlign: 'center'
   },
   callToAction: {
     fontSize: 18,
