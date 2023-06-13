@@ -23,18 +23,13 @@ export function RegisterForm () {
   })
 
   const handleSubmit = () => {
+    formik.handleSubmit()
     if (formik.values.password === '' || formik.values.confirmPassword === '') {
       return setError('Debe llenar todos los campos')
     }
     if (formik.values.password !== formik.values.confirmPassword) {
       return setError('Las contraseñas no coinciden')
     }
-    if (formik.errors.email) {
-      console.log({ email: formik.errors.email }, '33')
-      setError('Formato de email invalido')
-    }
-    console.log({ email: formik.errors.email }, '36')
-    formik.handleSubmit()
   }
 
   const handleChangeText = (field, value) => {
@@ -54,7 +49,7 @@ export function RegisterForm () {
           onChangeText={(text) => handleChangeText('email', text)}
         />
       </View>
-      <View style={styles.inputContainer}>
+      <View style={[styles.inputContainer, formik.errors.password && styles.inputError]}>
         <Input
           style={styles.input}
           variant={'unstyled'}
@@ -64,7 +59,7 @@ export function RegisterForm () {
           onChangeText={(text) => handleChangeText('password', text)}
         />
       </View>
-      <View style={styles.inputContainer}>
+      <View style={[styles.inputContainer, formik.errors.confirmPassword && styles.inputError]}>
         <Input
           variant={'unstyled'}
           style={styles.input}

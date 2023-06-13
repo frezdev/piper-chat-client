@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator()
 
 export function AppNavigation () {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ animation: 'slide_from_right' }}>
       <Stack.Screen
         name={screens.tab.root}
         component={ButtomTabNavigation}

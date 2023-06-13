@@ -12,6 +12,6 @@ export function validationSchema () {
   return Yup.object({
     email: Yup.string().email(true).required(true),
     password: Yup.string().required(true),
-    confirmPassword: Yup.string().required()
+    confirmPassword: Yup.string().required(true)
   })
 }

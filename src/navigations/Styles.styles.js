@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
       color: variables.textColorNormal,
       fontSize: 18
     },
+    animation: 'slide_from_right',
     headerTitleAlign: 'center'
   },
   modalStyles: {
