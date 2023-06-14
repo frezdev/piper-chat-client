@@ -1,5 +1,7 @@
 import { useState, useEffect, createContext } from 'react'
+import { User } from '../api'
 
+const userController = new User()
 export const AuthContext = createContext()
 
 export function AuthProvider (props) {
@@ -19,7 +21,15 @@ export function AuthProvider (props) {
   }
 
   const login = async (accessToken) => {
-    // ...TODO
+    try {
+      const response = await userController.getMe(accessToken)
+      setLoading(true)
+      setUser(response)
+      setToken(accessToken)
+      setLoading(false)
+    } catch (error) {
+      setLoading(false)
+    }
   }
 
   const logout = async () => {

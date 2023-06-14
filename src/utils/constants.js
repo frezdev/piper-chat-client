@@ -9,6 +9,9 @@ export const ENV = {
     AUTH: {
       REGISTER: 'auth/register',
       LOGIN: 'auth/login'
+    },
+    USER: {
+      GET_ME: 'users/me'
     }
   }
 }

@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react'
 import { View, Text } from 'react-native'
 import { Input, Button } from 'native-base'
-import { useNavigation } from '@react-navigation/native'
 import { useFormik } from 'formik'
 import { Auth } from '../../../api'
+import { useAuth } from '../../../hooks'
 import { validationSchema, initialValues } from './LoginForm.form'
 import { styles } from './LoginForm.styles'
 
 const authController = new Auth()
 
 export function LoginForm () {
+  const { login } = useAuth()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-
-  const navigation = useNavigation()
 
   const formik = useFormik({
     initialValues: initialValues(),
@@ -22,8 +21,11 @@ export function LoginForm () {
     onSubmit: async (formValues) => {
       setLoading(formik.isSubmitting)
       try {
-        await authController.login(formValues)
-        navigation.goBack()
+        const response = await authController.login(formValues)
+
+        const { access, refresh } = response
+
+        await login(access)
       } catch (error) {
         setError(error.message)
       }
