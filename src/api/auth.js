@@ -49,7 +49,7 @@ export class Auth {
       return result
     } catch (error) {
       if (error?.type === 'credencials') {
-        throw new Error(error.error)
+        throw new Error('Email o contraseña incorrectos')
       }
       throw error
     }
