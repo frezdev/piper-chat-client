@@ -31,7 +31,7 @@ export class Auth {
 
   async login ({ email, password }) {
     try {
-      const url = `${API_URL}/${ENDPOINTS.AUTH.REGISTER}`
+      const url = `${API_URL}/${ENDPOINTS.AUTH.LOGIN}`
       const params = {
         method: 'POST',
         headers: {
@@ -44,12 +44,12 @@ export class Auth {
       }
       const response = await fetch(url, params)
       const result = await response.json()
-      if (response.status !== 201) throw result
+      if (response.status !== 200) throw result
 
       return result
     } catch (error) {
-      if (error.error.keyValue.email) {
-        throw new Error('Este correo ya está registrado')
+      if (error?.type === 'credencials') {
+        throw new Error(error.error)
       }
       throw error
     }
