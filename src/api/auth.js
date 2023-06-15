@@ -1,6 +1,7 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ENV } from '../utils'
 
-const { API_URL, ENDPOINTS } = ENV
+const { API_URL, ENDPOINTS, JWT } = ENV
 
 export class Auth {
   async register ({ email, password }) {
@@ -53,5 +54,30 @@ export class Auth {
       }
       throw error
     }
+  }
+
+  async refreshAccessToken (refreshToken) {
+    // TODO...
+  }
+
+  async setAccessToken (token) {
+    await AsyncStorage.setItem(JWT.ACCESS, token)
+  }
+
+  async getAccessToken () {
+    return await AsyncStorage.getItem(JWT.ACCESS)
+  }
+
+  async setRefreshToken (token) {
+    await AsyncStorage.setItem(JWT.REFRESH, token)
+  }
+
+  async getRefreshToken () {
+    return await AsyncStorage.getItem(JWT.REFRESH)
+  }
+
+  async removeTokens () {
+    await AsyncStorage.removeItem(JWT.ACCESS)
+    await AsyncStorage.removeItem(JWT.REFRESH)
   }
 }

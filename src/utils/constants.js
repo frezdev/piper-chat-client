@@ -13,5 +13,9 @@ export const ENV = {
     USER: {
       GET_ME: 'users/me'
     }
+  },
+  JWT: {
+    ACCESS: 'access',
+    REFRESH: 'refresh'
   }
 }

@@ -1,7 +1,10 @@
 import { useState, useEffect, createContext } from 'react'
-import { User } from '../api'
+import { User, Auth } from '../api'
+import { hasExpiredToken } from '../utils'
 
 const userController = new User()
+const authController = new Auth()
+
 export const AuthContext = createContext()
 
 export function AuthProvider (props) {
@@ -12,6 +15,16 @@ export function AuthProvider (props) {
 
   useEffect(() => {
     (async () => {
+      const accessToken = await authController.getAccessToken()
+      const refreshToken = await authController.getRefreshToken()
+
+      if (!accessToken || !refreshToken) {
+        logout()
+        setLoading(false)
+        return
+      }
+
+      console.log(hasExpiredToken(accessToken))
       setLoading(false)
     })()
   }, [])
@@ -33,7 +46,7 @@ export function AuthProvider (props) {
   }
 
   const logout = async () => {
-    // ...TODO
+    console.log('LOGOUT...')
   }
 
   const updateUser = (key, value) => {

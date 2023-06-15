@@ -25,6 +25,9 @@ export function LoginForm () {
 
         const { access, refresh } = response
 
+        await authController.setAccessToken(access)
+        await authController.setRefreshToken(refresh)
+
         await login(access)
       } catch (error) {
         setError(error.message)
