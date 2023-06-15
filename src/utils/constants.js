@@ -8,7 +8,8 @@ export const ENV = {
   ENDPOINTS: {
     AUTH: {
       REGISTER: 'auth/register',
-      LOGIN: 'auth/login'
+      LOGIN: 'auth/login',
+      REFRESH_ACCESS_TOKEN: 'auth/refresh-access-toker'
     },
     USER: {
       GET_ME: 'users/me'
@@ -17,5 +18,8 @@ export const ENV = {
   JWT: {
     ACCESS: 'access',
     REFRESH: 'refresh'
+  },
+  STORAGE: {
+    USER: 'user'
   }
 }

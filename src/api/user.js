@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ENV } from '../utils'
 
 const { API_URL, ENDPOINTS } = ENV
@@ -24,5 +25,18 @@ export class User {
         throw error
       }
     }
+  }
+
+  async setUserStorage (userData) {
+    await AsyncStorage.setItem(ENV.STORAGE.USER, JSON.stringify(userData))
+  }
+
+  async getUserStorage () {
+    const userStorage = await AsyncStorage.getItem(ENV.STORAGE.USER)
+    return JSON.parse(userStorage)
+  }
+
+  async removeUserStorage () {
+    await AsyncStorage.removeItem(ENV.STORAGE.USER)
   }
 }

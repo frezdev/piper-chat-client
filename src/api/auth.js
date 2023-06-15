@@ -57,7 +57,24 @@ export class Auth {
   }
 
   async refreshAccessToken (refreshToken) {
-    // TODO...
+    try {
+      const url = `${API_URL}/${ENDPOINTS.AUTH.REFRESH_ACCESS_TOKEN}`
+      const params = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ refreshToken })
+      }
+      const response = await fetch(url, params)
+      const result = await response.json()
+      if (response.status !== 200) throw result
+
+      const { accessToken } = result
+      return accessToken
+    } catch (error) {
+      if (error) throw error
+    }
   }
 
   async setAccessToken (token) {

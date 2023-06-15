@@ -17,40 +17,73 @@ export function AuthProvider (props) {
     (async () => {
       const accessToken = await authController.getAccessToken()
       const refreshToken = await authController.getRefreshToken()
-
       if (!accessToken || !refreshToken) {
         logout()
         setLoading(false)
         return
       }
 
-      console.log(hasExpiredToken(accessToken))
+      const isExpiredaccess = hasExpiredToken(accessToken)
+      const isExpiredRefresh = hasExpiredToken(refreshToken)
+
+      if (isExpiredaccess) {
+        isExpiredRefresh
+          ? logout()
+          : reLogin(refreshToken)
+      } else {
+        login(accessToken)
+      }
+
       setLoading(false)
     })()
   }, [])
 
   const reLogin = async (refreshToken) => {
-    // ...TODO
+    try {
+      setLoading(true)
+      const newAccesToken = await authController.refreshAccessToken(refreshToken)
+      await authController.setAccessToken(newAccesToken)
+      setToken(newAccesToken)
+    } catch (error) {
+      logout()
+    }
+    setLoading(false)
   }
 
   const login = async (accessToken) => {
     try {
-      const response = await userController.getMe(accessToken)
       setLoading(true)
-      setUser(response)
-      setToken(accessToken)
+      const userStorage = await userController.getUserStorage()
+      if (userStorage) {
+        setUser({ ...userStorage })
+      } else {
+        const response = await userController.getMe(accessToken)
+        await userController.setUserStorage(response)
+        setUser({ ...response })
+      }
       setLoading(false)
+      setToken(accessToken)
     } catch (error) {
       setLoading(false)
     }
   }
 
   const logout = async () => {
-    console.log('LOGOUT...')
+    await userController.removeUserStorage()
+    await authController.removeTokens()
+    setUser(null)
+    setToken(null)
   }
 
-  const updateUser = (key, value) => {
-    // ...TODO
+  const updateUser = ({ key, value }) => {
+    if (key) {
+      setUser({
+        ...user,
+        [key]: value
+      })
+      return
+    }
+    setUser({ ...user, ...value })
   }
 
   const data = {
