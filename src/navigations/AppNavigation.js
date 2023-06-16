@@ -8,9 +8,10 @@ import {
   UpdateGroupInfoScreen,
   AddParticipantsToGroupScreen
 } from '../screens/Groups'
-
-import { screens } from '../utils'
+import { screens, initSockets } from '../utils'
 import { styles } from './Styles.styles'
+
+initSockets()
 
 const Stack = createNativeStackNavigator()
 

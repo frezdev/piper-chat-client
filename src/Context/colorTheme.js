@@ -1,1 +1,1 @@
-export const dark = false
+export const dark = true
