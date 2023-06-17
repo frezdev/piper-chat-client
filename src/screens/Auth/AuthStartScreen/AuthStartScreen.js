@@ -2,9 +2,10 @@ import { SafeAreaView, View, Text, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { screens } from '../../../utils'
 import { images } from '../../../assets'
-import { styles } from './AuthStartScreen.styles'
+import { Styles } from './AuthStartScreen.styles'
 
 export function AuthStartScreen () {
+  const styles = Styles()
   const { navigate } = useNavigation()
 
   const goToLogin = () => {

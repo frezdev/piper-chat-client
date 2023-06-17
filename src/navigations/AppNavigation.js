@@ -9,13 +9,14 @@ import {
   AddParticipantsToGroupScreen
 } from '../screens/Groups'
 import { screens, initSockets } from '../utils'
-import { styles } from './Styles.styles'
+import { Styles } from './Styles.styles'
 
 initSockets()
 
 const Stack = createNativeStackNavigator()
 
 export function AppNavigation () {
+  const styles = Styles()
   return (
     <Stack.Navigator screenOptions={{ animation: 'slide_from_right' }}>
       <Stack.Screen

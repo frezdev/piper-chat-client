@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { screens } from '../../utils/screens'
 import { IconBack } from '../../components/Navigation'
-import { styles } from '../Styles.styles'
+import { Styles } from '../Styles.styles'
 import {
   AuthStartScreen,
   RegisterScreen,
@@ -11,6 +11,7 @@ import {
 const Stack = createNativeStackNavigator()
 
 export function AuthNavigation () {
+  const styles = Styles()
   return (
     <Stack.Navigator
       screenOptions={{

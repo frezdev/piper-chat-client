@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { CreateGroupScreen, GroupsListScreen } from '../../screens/Groups'
 import { screens } from '../../utils/screens'
-import { styles } from '../Styles.styles'
+import { Styles } from '../Styles.styles'
 
 const Stack = createNativeStackNavigator()
 
 export function GroupsNavigation () {
+  const styles = Styles()
   return (
     <Stack.Navigator
       screenOptions={{

@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { CreateChatScreen, ChatsListScreen } from '../../screens/Chats'
 import { screens } from '../../utils/screens'
-import { styles } from '../Styles.styles'
+import { Styles } from '../Styles.styles'
 
 const Stack = createNativeStackNavigator()
 
 export function ChatsNavigation () {
+  const styles = Styles()
   return (
     <Stack.Navigator
       screenOptions={{

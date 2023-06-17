@@ -1,9 +1,10 @@
 import { View, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { RegisterForm } from '../../../components/Auth'
-import { styles } from './RegisterScreen.styles'
+import { Styles } from './RegisterScreen.styles'
 
 export function RegisterScreen () {
+  const styles = Styles()
   const { goBack } = useNavigation()
   return (
     <View style={styles.content}>

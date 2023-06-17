@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SettingsScreen, UpdateUserInfo } from '../../screens/Settings'
 import { screens } from '../../utils/screens'
-import { styles } from '../Styles.styles'
+import { Styles } from '../Styles.styles'
 
 const Stack = createNativeStackNavigator()
 
 export function SettingsNavigation () {
+  const styles = Styles()
   return (
     <Stack.Navigator
       screenOptions={{

@@ -20,6 +20,7 @@ export const ENV = {
     REFRESH: 'refresh'
   },
   STORAGE: {
-    USER: 'user'
+    USER: 'user',
+    COLOR_THEME: 'colorTheme'
   }
 }

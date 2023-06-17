@@ -1,9 +1,10 @@
 import { View, Text } from 'react-native'
 import { Avatar } from 'native-base'
 import { ENV } from '../../../utils'
-import { styles } from './UserInfo.styles'
+import { Styles } from './UserInfo.styles'
 
 export function UserInfo (props) {
+  const styles = Styles()
   const { user } = props
   return (
     <View style={styles.content}>

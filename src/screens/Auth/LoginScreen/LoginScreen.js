@@ -2,9 +2,10 @@ import { View, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { screens } from '../../../utils'
 import { LoginForm } from '../../../components/Auth'
-import { styles } from './LoginScreen.styles'
+import { Styles } from './LoginScreen.styles'
 
 export function LoginScreen () {
+  const styles = Styles()
   const { navigate } = useNavigation()
 
   const goToRegister = () => {

@@ -5,11 +5,12 @@ import { useFormik } from 'formik'
 import { Auth } from '../../../api'
 import { useAuth } from '../../../hooks'
 import { validationSchema, initialValues } from './LoginForm.form'
-import { styles } from './LoginForm.styles'
+import { Styles } from './LoginForm.styles'
 
 const authController = new Auth()
 
 export function LoginForm () {
+  const styles = Styles()
   const { login } = useAuth()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)

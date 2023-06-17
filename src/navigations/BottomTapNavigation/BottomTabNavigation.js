@@ -7,8 +7,8 @@ import {
   GroupsNavigation,
   SettingsNavigation
 } from '../stacks'
-import { variables } from '../../styles/variables.styles'
-import { styles } from './BottomTabNavigation.styles'
+import { Variables } from '../../styles/variables.styles'
+import { Styles } from './BottomTabNavigation.styles'
 
 const Tab = createBottomTabNavigator()
 
@@ -36,6 +36,8 @@ const screenIcon = (route, color, size) => {
 }
 
 export function ButtomTabNavigation () {
+  const styles = Styles()
+  const variables = Variables()
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({

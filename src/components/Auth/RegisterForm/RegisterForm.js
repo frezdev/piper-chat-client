@@ -5,11 +5,12 @@ import { useNavigation } from '@react-navigation/native'
 import { useFormik } from 'formik'
 import { Auth } from '../../../api'
 import { validationSchema, initialValues } from './RegisterForm.form'
-import { styles } from './RegisterForm.styles'
+import { Styles } from './RegisterForm.styles'
 
 const authController = new Auth()
 
 export function RegisterForm () {
+  const styles = Styles()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
