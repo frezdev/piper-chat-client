@@ -1,24 +1,14 @@
-import { dark } from '../../Context/colorTheme'
 import { StyleSheet } from 'react-native'
+import { variables } from '../../styles/variables.styles'
 const constants = {
   borderTopWidth: 0.6,
   paddingBottom: 4,
   height: 49
 }
-const darkTheme = StyleSheet.create({
+export const styles = StyleSheet.create({
   tabBarStyle: {
-    backgroundColor: '#121212',
-    borderTopColor: '#343434',
+    backgroundColor: variables.secundaryBackground,
+    borderTopColor: variables.borderColor,
     ...constants
   }
 })
-
-const lightTheme = StyleSheet.create({
-  tabBarStyle: {
-    backgroundColor: '#f6f6f6',
-    borderTopColor: '#d5d5d5',
-    ...constants
-  }
-})
-
-export const styles = dark ? darkTheme : lightTheme

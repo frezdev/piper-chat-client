@@ -3,18 +3,11 @@ import { useAuth } from '../../../hooks'
 import { UserInfo, Options } from '../../../components/Settings'
 
 export function SettingsScreen () {
-  const { logout, user } = useAuth()
+  const { logout, user, accessToken } = useAuth()
   return (
-    <SafeAreaView style={{ alignItems: 'center', height: '100%', overflow: 'scroll', position: 'relative' }}>
+    <SafeAreaView>
       <UserInfo user={user} />
-      <Options />
-      <View style={{ padding: 20 }}>
-        <Text
-          onPress={logout}
-          style={{ color: 'red', fontSize: 20, padding: 15 }}>
-            Cerrar sesión
-        </Text>
-      </View>
+      <Options {...{ logout, user, accessToken }} />
     </SafeAreaView>
   )
 }

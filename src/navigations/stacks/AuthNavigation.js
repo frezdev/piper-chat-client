@@ -15,7 +15,6 @@ export function AuthNavigation () {
     <Stack.Navigator
       screenOptions={{
         ...styles.stackNavigationStyles,
-        animation: 'slide_from_right',
         headerLeft: IconBack,
         headerTitleAlign: 'center'
       }}

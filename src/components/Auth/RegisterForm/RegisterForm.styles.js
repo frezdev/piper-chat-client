@@ -17,8 +17,8 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   inputError: {
-    backgroundColor: '#ff131330',
-    borderBottomColor: '#fc3737'
+    backgroundColor: variables.dangerColorOpacity,
+    borderBottomColor: variables.dangerColor
   },
   buttonContainer: {
     marginVertical: 25
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     fontSize: 16
   },
   errorMessage: {
-    color: '#ff4644',
+    color: variables.dangerColor,
     textAlign: 'center',
     fontWeight: '500',
     fontSize: 16
