@@ -27,6 +27,38 @@ export class User {
     }
   }
 
+  async updateUser (accessToken, userData) {
+    try {
+      const url = `${API_URL}/${ENDPOINTS.USER.GET_ME}`
+
+      const data = userData
+
+      const formData = new FormData()
+      Object.keys(data).forEach(key => {
+        formData.append(key, data[key])
+        console.log(key, data[key])
+      })
+
+      const params = {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        },
+        body: formData
+      }
+
+      const response = await fetch(url, params)
+      const result = await response.json()
+
+      if (response.status !== 200) throw result
+      return result
+    } catch (error) {
+      if (error) {
+        throw error
+      }
+    }
+  }
+
   async setUserStorage (userData) {
     await AsyncStorage.setItem(ENV.STORAGE.USER, JSON.stringify(userData))
   }
