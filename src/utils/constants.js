@@ -1,4 +1,4 @@
-import { SERVER_IP, BASE_URL } from '../../env'
+import { SERVER_IP, BASE_URL, SUPABASE_API_KEY, SUPABASE_URL, IMAGES_URL } from '../../env'
 
 export const ENV = {
   SERVER_IP,
@@ -22,5 +22,8 @@ export const ENV = {
   STORAGE: {
     USER: 'user',
     COLOR_THEME: 'colorTheme'
-  }
+  },
+  SUPABASE_API_KEY,
+  SUPABASE_URL,
+  IMAGES_URL
 }

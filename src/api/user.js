@@ -31,12 +31,14 @@ export class User {
     try {
       const url = `${API_URL}/${ENDPOINTS.USER.GET_ME}`
 
-      const data = userData
+      const data = { ...userData }
+      if (userData.avatar) {
+        data.avatar = userData.avatar
+      }
 
       const formData = new FormData()
       Object.keys(data).forEach(key => {
         formData.append(key, data[key])
-        console.log(key, data[key])
       })
 
       const params = {

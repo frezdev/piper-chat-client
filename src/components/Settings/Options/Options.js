@@ -4,6 +4,7 @@ import { useColorTheme } from '../../../hooks/useColorTheme'
 import * as ImagePicker from 'expo-image-picker'
 import { imageExpoFormat, screens } from '../../../utils'
 import { User } from '../../../api'
+import { uploadFile } from '../../../utils/supabase'
 import { Styles } from './Options.styles'
 
 const userController = new User()
@@ -22,18 +23,24 @@ export function Options (props) {
     })
     if (!result.canceled) {
       const file = imageExpoFormat(result.assets[0].uri)
-      updateUserData({ avatar: file })
+      const formData = new FormData()
+      formData.append('avatar', file)
+
+      updateUserData({ avatar: { data: formData, name: file.name } })
     }
   }
 
   const updateUserData = async (userData) => {
     try {
+      if (userData.avatar) {
+        const { path } = await uploadFile(userData.avatar, 'avatar')
+        userData.avatar = path
+      }
       const response = await userController.updateUser(accessToken, userData)
       updateUser({ key: 'avatar', value: response.avatar })
       await userController.setUserStorage(response)
-      console.log({ response })
     } catch (error) {
-      console.error(error)
+      console.error({ error })
     }
   }
 

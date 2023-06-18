@@ -12,7 +12,7 @@ export function UserInfo (props) {
         bg='gray.400'
         size='2xl'
         style={styles.avatar}
-        source={{ uri: user.avatar && `${ENV.BASE_URL}/${user.avatar}` }}
+        source={{ uri: user.avatar && `${ENV.IMAGES_URL}/${user.avatar}` }}
       >
         {user?.email?.substring(0, 2).toUpperCase()}
       </Avatar>
