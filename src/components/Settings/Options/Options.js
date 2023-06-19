@@ -10,7 +10,7 @@ import { Styles } from './Options.styles'
 const userController = new User()
 
 export function Options (props) {
-  const { accessToken, user, logout, updateUser } = props
+  const { accessToken, logout, updateUser } = props
   const { updateTheme, dark } = useColorTheme()
   const { navigate } = useNavigation()
   const styles = Styles()
@@ -56,7 +56,7 @@ export function Options (props) {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.item} onPress={goToChangeName}>
-          <Text style={styles.text}>Cambiar nombre</Text>
+          <Text style={styles.text}>Actualizar información</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.item} onPress={updateTheme}>
