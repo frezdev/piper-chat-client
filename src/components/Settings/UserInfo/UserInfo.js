@@ -17,7 +17,7 @@ export function UserInfo (props) {
         {user?.email?.substring(0, 2).toUpperCase()}
       </Avatar>
 
-      {user.firtName || user.lastName
+      {user.firstName || user.lastName
         ? (
             <Text style={styles.identity}>
               {`${user.firstName} ${user.lastName}`}

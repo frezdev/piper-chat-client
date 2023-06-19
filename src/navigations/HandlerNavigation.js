@@ -20,6 +20,7 @@ export function HandlerNavigation () {
         updateUser({ value: userData })
         setLoading(false)
       } catch (error) {
+        setLoading(false)
         console.error(error)
       }
     })()
