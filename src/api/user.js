@@ -27,6 +27,27 @@ export class User {
     }
   }
 
+  async getAll (accessToken) {
+    try {
+      const url = `${API_URL}/${ENDPOINTS.USER.ALL_USERS}`
+      const params = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+      const response = await fetch(url, params)
+      const result = await response.json()
+
+      if (response.status !== 200) throw result
+
+      return result
+    } catch (error) {
+      if (error) {
+        throw error
+      }
+    }
+  }
+
   async updateUser (accessToken, userData) {
     try {
       const url = `${API_URL}/${ENDPOINTS.USER.GET_ME}`

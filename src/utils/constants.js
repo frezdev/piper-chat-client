@@ -12,7 +12,8 @@ export const ENV = {
       REFRESH_ACCESS_TOKEN: 'auth/refresh-access-toker'
     },
     USER: {
-      GET_ME: 'users/me'
+      GET_ME: 'users/me',
+      ALL_USERS: 'users'
     }
   },
   JWT: {
