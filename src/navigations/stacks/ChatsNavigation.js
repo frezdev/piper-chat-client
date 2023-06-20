@@ -26,8 +26,8 @@ export function ChatsNavigation () {
         options={{
           title: 'Nuevo Chat',
           presentation: 'modal',
-          headerLeft: IconBack,
-          ...styles.modalStyles
+          headerLeft: IconBack
+          // ...styles.modalStyles
         }}
       />
     </Stack.Navigator>

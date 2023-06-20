@@ -27,11 +27,10 @@ export function AuthProvider (props) {
       const isExpiredRefresh = hasExpiredToken(refreshToken)
 
       if (isExpiredaccess) {
-        isExpiredRefresh
-          ? logout()
-          : reLogin(refreshToken)
+        if (isExpiredRefresh) logout()
+        else await reLogin(refreshToken)
       } else {
-        login(accessToken)
+        await login(accessToken)
       }
 
       setLoading(false)
@@ -43,6 +42,7 @@ export function AuthProvider (props) {
       setLoading(true)
       const newAccesToken = await authController.refreshAccessToken(refreshToken)
       await authController.setAccessToken(newAccesToken)
+      await login(newAccesToken)
       setToken(newAccesToken)
     } catch (error) {
       logout()
@@ -68,11 +68,12 @@ export function AuthProvider (props) {
     }
   }
 
-  const logout = async () => {
-    await userController.removeUserStorage()
-    await authController.removeTokens()
+  const logout = () => {
+    userController.removeUserStorage()
+    authController.removeTokens()
     setUser(null)
     setToken(null)
+    setLoading(false)
   }
 
   const updateUser = ({ key, value }) => {
@@ -91,7 +92,8 @@ export function AuthProvider (props) {
     user,
     login,
     logout,
-    updateUser
+    updateUser,
+    loading
   }
 
   if (loading) return null
