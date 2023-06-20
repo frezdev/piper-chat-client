@@ -21,7 +21,7 @@ export function CreateChatScreen () {
         console.log(error)
       }
     })()
-  })
+  }, [])
   return (
     <View>
       <Text>CreateChatScreen</Text>
