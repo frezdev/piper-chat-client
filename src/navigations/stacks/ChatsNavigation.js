@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { CreateChatScreen, ChatsListScreen } from '../../screens/Chats'
 import { screens } from '../../utils/screens'
+import { IconBack } from '../../components/Navigation'
 import { Styles } from '../Styles.styles'
 
 const Stack = createNativeStackNavigator()
@@ -25,6 +26,7 @@ export function ChatsNavigation () {
         options={{
           title: 'Nuevo Chat',
           presentation: 'modal',
+          headerLeft: IconBack,
           ...styles.modalStyles
         }}
       />
