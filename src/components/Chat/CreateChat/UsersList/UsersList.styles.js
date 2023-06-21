@@ -7,20 +7,31 @@ export function Styles () {
   return StyleSheet.create({
     content: {
       paddingHorizontal: 10,
-      marginBottom: 25,
       paddingBottom: 50
     },
     item: {
       flexDirection: 'row',
+      alignItems: 'center',
+      height: 80
+    },
+    info: {
       borderBottomWidth: 1,
+      flexDirection: 'column',
+      justifyContent: 'space-evenly',
+      padding: 10,
       borderBottomColor: variables.borderColor,
-      paddingVertical: 7,
-      alignItems: 'center'
+      height: '100%',
+      width: '100%'
     },
     name: {
-      fontWeight: '600',
+      fontWeight: 'bold',
       color: variables.textColorOpacity,
-      fontSize: 18
+      fontSize: 19
+    },
+    email: {
+      fontSize: 14,
+      fontWeight: '400',
+      color: variables.textColorOpacity
     }
   })
 }

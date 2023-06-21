@@ -15,31 +15,41 @@ export function UsersList (props) {
   }
   return (
     <ScrollView style={styles.content}>
-      {map(users, (user) => (
-        <TouchableOpacity
-          key={user.id}
-          style={styles.item}
-          onPress={() => createChat(user)}
-        >
-          <Avatar
-            bg={'cyan.500'}
-            marginRight={3}
-            size='lg'
-            source={{ uri: user.avatar && `${ENV.IMAGES_URL}/${user.avatar}` }}
+      <View style={{ marginBottom: 40 }}>
+        {map(users, (user) => (
+          <TouchableOpacity
+            key={user.id}
+            style={styles.item}
+            onPress={() => createChat(user)}
           >
-            {user.email.substring(0, 2).toUpperCase()}
-          </Avatar>
-          <View>
-            <Text style={styles.name}>
-              {
-                (user.firstName || user.lastName)
-                  ? `${user?.firstName} ${user?.lastName}`
-                  : user.email
-              }
-            </Text>
-          </View>
-        </TouchableOpacity>
-      ))}
+
+            <View style={{ paddingVertical: 7 }}>
+              <Avatar
+                bg={'lightBlue.600'}
+                marginRight={4}
+                marginX={2}
+                size='lg'
+                source={{ uri: user.avatar && `${ENV.IMAGES_URL}/${user.avatar}` }}
+              >
+                {user.email.substring(0, 2).toUpperCase()}
+              </Avatar>
+            </View>
+
+            <View style={styles.info}>
+              <Text style={styles.name}>
+                {
+                  (user.firstName || user.lastName)
+                    ? `${user?.firstName} ${user?.lastName}`
+                    : user.email
+                }
+              </Text>
+              <Text style={styles.email}>
+                {user.email}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
     </ScrollView>
   )
 }
