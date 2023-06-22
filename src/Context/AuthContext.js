@@ -53,6 +53,7 @@ export function AuthProvider (props) {
   const login = async (accessToken) => {
     try {
       setLoading(true)
+      setToken(accessToken)
       const userStorage = await userController.getUserStorage()
       if (userStorage) {
         setUser({ ...userStorage })
@@ -62,7 +63,6 @@ export function AuthProvider (props) {
         setUser({ ...response })
       }
       setLoading(false)
-      setToken(accessToken)
     } catch (error) {
       setLoading(false)
     }

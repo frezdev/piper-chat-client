@@ -34,6 +34,7 @@ export class Chat {
       const url = `${API_URL}/${ENDPOINTS.CHAT}`
       const params = {
         headers: {
+          method: 'GET',
           Authorization: `Bearer ${token}`
         }
       }

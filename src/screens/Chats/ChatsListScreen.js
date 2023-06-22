@@ -36,6 +36,7 @@ export const ChatsListScreen = () => {
       (async () => {
         try {
           const response = await chatController.getAll(accessToken)
+          // console.log(response)
           setChats(response)
         } catch (error) {
           console.error({ error })
