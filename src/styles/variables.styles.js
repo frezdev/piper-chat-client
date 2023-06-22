@@ -10,7 +10,8 @@ export function Variables () {
     textColorNormal: dark ? '#fff' : '#000',
     secundaryBackground: dark ? '#0e0e0e' : '#f4f4f4',
     appBackground: dark ? '#000' : '#fff',
-    borderColor: dark ? '#343434' : '#d0d0d0'
+    borderColor: dark ? '#343434' : '#d0d0d0',
+    inputBg: dark ? '#a5a5a53b' : '#a5a5a52b'
   }
   return variables
 }
