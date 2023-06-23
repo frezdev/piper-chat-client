@@ -1,9 +1,12 @@
 import { useEffect, useState, useCallback } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { IconButton, AddIcon } from 'native-base'
 import { Chat } from '../../api'
 import { useAuth } from '../../hooks'
+import { LoadingScreen } from '../../components/Shared/LoadingScreen'
+import { ChatsList } from '../../components/Chat/ChatsList'
+import { size } from 'lodash'
 import { screens } from '../../utils'
 import { Variables } from '../../styles/variables.styles'
 
@@ -37,6 +40,7 @@ export const ChatsListScreen = () => {
         try {
           const response = await chatController.getAll(accessToken)
           // console.log(response)
+          setChatsResult(response)
           setChats(response)
         } catch (error) {
           console.error({ error })
@@ -44,9 +48,14 @@ export const ChatsListScreen = () => {
       })()
     }, [])
   )
+
+  if (!chatsResult) return <LoadingScreen />
+
   return (
     <View>
-      <Text>ChatsListScreen</Text>
+      <ChatsList
+        chats={size(chats) === size(chatsResult) ? chats : chatsResult}
+      />
     </View>
   )
 }
