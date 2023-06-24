@@ -52,7 +52,7 @@ export function UsersList (props) {
                 {
                   (user.firstName || user.lastName)
                     ? `${user?.firstName} ${user?.lastName}`
-                    : user.email
+                    : user.email.split('@').at(0)
                 }
               </Text>
               <Text style={styles.email}>

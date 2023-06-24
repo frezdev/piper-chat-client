@@ -7,6 +7,7 @@ export function Variables () {
     dangerColor: '#fc3737',
     dangerColorOpacity: '#ff131330',
     textColorOpacity: dark ? '#bcbcbc' : '#4b4b4b',
+    textColorOpacity2: dark ? '#949494' : '#868686',
     textColorNormal: dark ? '#fff' : '#000',
     secundaryBackground: dark ? '#0e0e0e' : '#f4f4f4',
     appBackground: dark ? '#000' : '#fff',

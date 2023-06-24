@@ -6,6 +6,7 @@ export function Styles () {
 
   return StyleSheet.create({
     content: {
+      padding: 10,
       paddingBottom: 100
     },
     noChats: {
