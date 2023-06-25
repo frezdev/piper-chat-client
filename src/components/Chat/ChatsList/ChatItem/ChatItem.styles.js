@@ -46,7 +46,7 @@ export function Styles () {
     },
     time: {
       color: variables.brandColor,
-      fontWeight: '400',
+      fontWeight: '500',
       fontSize: 15
     },
     totalUnreadMessagesContainer: {
@@ -68,6 +68,10 @@ export function Styles () {
       color: variables.appBackground,
       fontSize: 13,
       fontWeight: '400'
+    },
+    unread: {
+      fontWeight: '500',
+      color: variables.textColorNormal
     },
     noNewMessages: {
       color: variables.textColorOpacity2
