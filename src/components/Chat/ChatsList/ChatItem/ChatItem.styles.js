@@ -29,7 +29,7 @@ export function Styles () {
       gap: 4
     },
     identity: {
-      fontWeight: '600',
+      fontWeight: 'bold',
       fontSize: 18,
       width: '70%',
       color: variables.textColorNormal
@@ -57,20 +57,19 @@ export function Styles () {
       right: 0,
       top: 25,
       backgroundColor: variables.brandColor,
-      width: 19,
-      height: 19,
-      borderRadius: '50%',
-      padding: 1
+      width: 20,
+      height: 20,
+      borderRadius: 50,
+      padding: 0
     },
     totalUnreadMessages: {
-      width: '100%',
       textAlign: 'center',
       color: variables.appBackground,
       fontSize: 13,
       fontWeight: '400'
     },
     unread: {
-      fontWeight: '500',
+      fontWeight: 'bold',
       color: variables.textColorNormal
     },
     noNewMessages: {

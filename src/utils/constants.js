@@ -18,7 +18,8 @@ export const ENV = {
     CHAT: 'chats',
     CHAT_MESSAGE: {
       LAST: 'chat/messages/last',
-      TOTAL: 'chat/messages/total'
+      TOTAL: 'chat/messages/total',
+      UNREAD: 'chat/messages/unread'
     }
   },
   JWT: {
