@@ -5,6 +5,7 @@ import { Avatar } from 'native-base'
 import { isEmpty } from 'lodash'
 // import { DateTime } from 'luxon'
 import { useAuth } from '../../../../hooks'
+import { AlertConfirm } from '../../../Shared'
 import { ChatMessage } from '../../../../api/chatMessage'
 import { ENV, formatDate } from '../../../../utils'
 import { Styles } from './ChatItem.styles'
@@ -19,6 +20,7 @@ export function ChatItem (props) {
   const [lastMessage, setLastMessage] = useState(null)
   const [sender, setSender] = useState(null)
   const [totalUnreadMessages, setTotalUnreadMessages] = useState(0)
+  const [showDelete, setShowDelete] = useState(false)
 
   const userChat = user.id !== member_one.id ? member_one : member_two
 
@@ -45,10 +47,16 @@ export function ChatItem (props) {
       }
     })()
   }, [chat._id])
+
   const openChat = () => {
     console.log('Abrir chat ->', chat)
   }
 
+  const openCloseDelete = () => setShowDelete(prevState => !prevState)
+
+  const deleteChat = () => {
+    console.log('Eliminar chat ->', chat._id)
+  }
   return (
     <>
       <TouchableOpacity style={styles.item} onPress={openChat}>
@@ -94,6 +102,16 @@ export function ChatItem (props) {
           </View>
         </View>
       </TouchableOpacity>
+
+      <AlertConfirm
+        show={showDelete}
+        onClose={openCloseDelete}
+        textConfirm='Eliminar'
+        onConfirm={deleteChat}
+        title='Eliminar chat'
+        isDanger={true}
+        message={`Seguro que deseas elininar este chat con ${userChat.firstName || userChat.email}`}
+      />
     </>
   )
 }
