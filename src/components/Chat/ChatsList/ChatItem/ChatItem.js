@@ -28,24 +28,12 @@ export function ChatItem (props) {
     (async () => {
       try {
         const totalUnread = await messageController.getUnredMessages(accessToken, chat._id)
-        await messageController.setTotalUnreadMessage(chat._id, totalUnread)
         setTotalUnreadMessages(totalUnread)
       } catch (error) {
         console.error(error)
       }
     })()
-  }, [chat._id])
-  useEffect(() => {
-    (async () => {
-      try {
-        const totalUnread = await messageController.getTotalUnreadMessages(chat._id)
-        setTotalUnreadMessages(totalUnread + 1)
-        await messageController.setTotalUnreadMessage(chat._id, totalUnread + 1)
-      } catch (error) {
-        console.error(error)
-      }
-    })()
-  }, [lastMessage])
+  }, [chat._id, lastMessage])
 
   useEffect(() => {
     (async () => {
@@ -82,6 +70,7 @@ export function ChatItem (props) {
   }, [])
 
   const newMessage = async (newMessage) => {
+    console.log({ newMessage })
     setSender(newMessage.user.id === user.id)
     setLastMessage(newMessage)
   }

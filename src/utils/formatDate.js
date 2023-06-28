@@ -3,7 +3,7 @@ export function formatDate (timestamp) {
   const date = new Date(timestamp)
 
   const timeDiff = now.getTime() - date.getTime()
-  const dayDiff = Math.floor(timeDiff / (1000 * 3600 * 20))
+  const dayDiff = Math.floor(timeDiff / (1000 * 3600 * 24))
 
   if (dayDiff === 0) {
     return date.toLocaleTimeString(['es-CO'], { hour: '2-digit', minute: '2-digit' }) // Hoy: hh:mm
