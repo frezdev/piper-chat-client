@@ -16,8 +16,11 @@ export const ChatsListScreen = () => {
   const { accessToken } = useAuth()
   const [chats, setChats] = useState(null)
   const [chatsResult, setChatsResult] = useState(null)
+  const [reload, setReload] = useState(false)
   const navigation = useNavigation()
   const variables = Variables()
+
+  const onReload = () => setReload(prevState => !prevState)
 
   useEffect(() => {
     navigation.setOptions({
@@ -39,14 +42,13 @@ export const ChatsListScreen = () => {
       (async () => {
         try {
           const response = await chatController.getAll(accessToken)
-          // console.log(response)
           setChatsResult(response)
           setChats(response)
         } catch (error) {
           console.error({ error })
         }
       })()
-    }, [])
+    }, [reload])
   )
 
   if (!chatsResult) return <LoadingScreen />
@@ -55,6 +57,7 @@ export const ChatsListScreen = () => {
     <View>
       <ChatsList
         chats={size(chats) === size(chatsResult) ? chats : chatsResult}
+        onReload={onReload}
       />
     </View>
   )

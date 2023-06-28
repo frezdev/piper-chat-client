@@ -3,18 +3,18 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { Avatar } from 'native-base'
 import { isEmpty } from 'lodash'
-// import { DateTime } from 'luxon'
 import { useAuth } from '../../../../hooks'
 import { AlertConfirm } from '../../../Shared'
-import { ChatMessage } from '../../../../api/chatMessage'
-import { ENV, formatDate } from '../../../../utils'
+import { ChatMessage, Chat } from '../../../../api'
+import { ENV, formatDate, socket } from '../../../../utils'
 import { Styles } from './ChatItem.styles'
 
 const messageController = new ChatMessage()
+const chatController = new Chat()
 
 export function ChatItem (props) {
   const styles = Styles()
-  const { chat } = props
+  const { chat, onReload } = props
   const { member_one, member_two } = chat
   const { user, accessToken } = useAuth()
   const [lastMessage, setLastMessage] = useState(null)
@@ -28,19 +28,31 @@ export function ChatItem (props) {
     (async () => {
       try {
         const totalUnread = await messageController.getUnredMessages(accessToken, chat._id)
+        await messageController.setTotalUnreadMessage(chat._id, totalUnread)
         setTotalUnreadMessages(totalUnread)
       } catch (error) {
         console.error(error)
       }
     })()
   }, [chat._id])
+  useEffect(() => {
+    (async () => {
+      try {
+        const totalUnread = await messageController.getTotalUnreadMessages(chat._id)
+        setTotalUnreadMessages(totalUnread + 1)
+        await messageController.setTotalUnreadMessage(chat._id, totalUnread + 1)
+      } catch (error) {
+        console.error(error)
+      }
+    })()
+  }, [lastMessage])
 
   useEffect(() => {
     (async () => {
       try {
         const message = await messageController.getLastMessage(accessToken, chat._id)
 
-        message.user === user.id ? setSender(true) : setSender(false)
+        setSender(message.user === user.id)
         if (!isEmpty(message)) setLastMessage(message)
       } catch (error) {
         console.log(error)
@@ -49,17 +61,34 @@ export function ChatItem (props) {
   }, [chat._id])
 
   const openChat = () => {
-    console.log('Abrir chat ->', chat)
+    console.log('Abrir chat ->', chat._id)
   }
 
   const openCloseDelete = () => setShowDelete(prevState => !prevState)
 
-  const deleteChat = () => {
-    console.log('Eliminar chat ->', chat._id)
+  const deleteChat = async () => {
+    try {
+      await chatController.deleteChat(accessToken, chat._id)
+      openCloseDelete()
+      onReload()
+    } catch (error) {
+      console.error({ error })
+    }
   }
+
+  useEffect(() => {
+    socket?.emit('subscribe', `${chat._id}_notify`)
+    socket?.on('message_notify', newMessage)
+  }, [])
+
+  const newMessage = async (newMessage) => {
+    setSender(newMessage.user.id === user.id)
+    setLastMessage(newMessage)
+  }
+
   return (
     <>
-      <TouchableOpacity style={styles.item} onPress={openChat}>
+      <TouchableOpacity style={styles.item} onPress={openChat} onLongPress={openCloseDelete}>
         <View style={{ paddingVertical: 7 }}>
           <Avatar
             style={styles.avatar}
@@ -110,7 +139,7 @@ export function ChatItem (props) {
         onConfirm={deleteChat}
         title='Eliminar chat'
         isDanger={true}
-        message={`Seguro que deseas elininar este chat con ${userChat.firstName || userChat.email}`}
+        message={`¿Seguro que deseas elininar este chat con ${userChat.firstName || userChat.email}?`}
       />
     </>
   )

@@ -1,5 +1,5 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ENV } from '../utils'
-
 const { API_URL, ENDPOINTS } = ENV
 
 export class ChatMessage {
@@ -58,5 +58,14 @@ export class ChatMessage {
     } catch (error) {
       if (error) throw error
     }
+  }
+
+  async setTotalUnreadMessage (chat_id, count) {
+    await AsyncStorage.setItem(`${chat_id}_unread`, JSON.stringify(count))
+  }
+
+  async getTotalUnreadMessages (chat_id) {
+    const response = await AsyncStorage.getItem(`${chat_id}_unread`)
+    return Number(response)
   }
 }

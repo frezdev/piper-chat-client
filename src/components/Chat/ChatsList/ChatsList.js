@@ -4,7 +4,7 @@ import { ChatItem } from './ChatItem'
 import { Styles } from './ChatsList.styles'
 
 export function ChatsList (props) {
-  const { chats } = props
+  const { chats, onReload } = props
   const styles = Styles()
 
   return (
@@ -19,7 +19,7 @@ export function ChatsList (props) {
           : null
         }
         {map(chats, (chat) => (
-          <ChatItem key={chat._id} chat={chat} />
+          <ChatItem key={chat._id} chat={chat} onReload={onReload} />
         ))}
       </View>
     </ScrollView>

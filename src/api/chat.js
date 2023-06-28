@@ -33,8 +33,29 @@ export class Chat {
     try {
       const url = `${API_URL}/${ENDPOINTS.CHAT}`
       const params = {
+        method: 'GET',
         headers: {
-          method: 'GET',
+          Authorization: `Bearer ${token}`
+        }
+      }
+
+      const response = await fetch(url, params)
+      const result = await response.json()
+
+      if (response.status !== 200) throw result
+
+      return result
+    } catch (error) {
+      if (error) throw error
+    }
+  }
+
+  async deleteChat (token, chat_id) {
+    try {
+      const url = `${API_URL}/${ENDPOINTS.CHAT}/${chat_id}`
+      const params = {
+        method: 'DELETE',
+        headers: {
           Authorization: `Bearer ${token}`
         }
       }
