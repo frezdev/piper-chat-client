@@ -55,6 +55,7 @@ export function ChatItem (props) {
       try {
         const totalUnread = await messageController.getUnredMessages(accessToken, chat._id)
         setTotalUnreadMessages(totalUnread)
+        onReload()
       } catch (error) {
         console.error(error)
       }
@@ -101,21 +102,26 @@ export function ChatItem (props) {
       console.error({ error })
     }
   }
-  console.log(user.firstName, accessToken)
+
   useEffect(() => {
     socket?.emit('subscribe', `${chat._id}_notify`)
     socket?.on('message_notify', newMessage)
+
     socket?.emit('subscribe', `${chat._id}_read_notify`)
-    socket?.on('read_notify', ({ read }) => {
-      setIsRead(read)
-      setTotalUnreadMessages(0)
+    socket?.on('read_notify', ({ read, chat_id }) => {
+      if (chat_id === chat._id) {
+        setIsRead(read)
+        setTotalUnreadMessages(0)
+      }
     })
   }, [])
 
   const newMessage = async (newMessage) => {
     setSender(newMessage?.user?.id === user?.id)
-    setLastMessage(newMessage)
-    setIsRead(newMessage?.read)
+    if (newMessage?.chat === chat._id) {
+      setLastMessage(newMessage)
+      setIsRead(newMessage?.read)
+    }
   }
 
   return (

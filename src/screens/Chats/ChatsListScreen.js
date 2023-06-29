@@ -42,8 +42,13 @@ export const ChatsListScreen = () => {
       (async () => {
         try {
           const response = await chatController.getAll(accessToken)
-          setChatsResult(response)
-          setChats(response)
+          const result = response.sort((a, b) => {
+            return (
+              new Date(b?.last_message_date) - new Date(a?.last_message_date)
+            )
+          })
+          setChatsResult(result)
+          setChats(result)
         } catch (error) {
           console.error({ error })
         }
