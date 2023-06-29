@@ -54,6 +54,26 @@ export class ChatMessage {
       const result = await response.json()
 
       if (response.status !== 200) throw result
+      return result?.totalUnread
+    } catch (error) {
+      if (error) throw error
+    }
+  }
+
+  async updateReadMessages (token, chat_id) {
+    try {
+      const url = `${API_URL}/${ENDPOINTS.CHAT_MESSAGE.UPDATE}/${chat_id}`
+      const params = {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+
+      const response = await fetch(url, params)
+      const result = await response.json()
+
+      if (response.status !== 200 && response.status !== 300) throw result
       return result
     } catch (error) {
       if (error) throw error

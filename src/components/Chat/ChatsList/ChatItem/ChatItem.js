@@ -6,7 +6,7 @@ import { isEmpty } from 'lodash'
 import { useAuth } from '../../../../hooks'
 import { AlertConfirm } from '../../../Shared'
 import { ChatMessage, Chat } from '../../../../api'
-import { ENV, formatDate, socket } from '../../../../utils'
+import { ENV, formatDate, socket, screens } from '../../../../utils'
 import { Styles } from './ChatItem.styles'
 
 const messageController = new ChatMessage()
@@ -21,8 +21,34 @@ export function ChatItem (props) {
   const [sender, setSender] = useState(null)
   const [totalUnreadMessages, setTotalUnreadMessages] = useState(0)
   const [showDelete, setShowDelete] = useState(false)
+  const [isRead, setIsRead] = useState(false)
+  const { navigate } = useNavigation()
 
   const userChat = user.id !== member_one.id ? member_one : member_two
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const totalUnread = await messageController.getUnredMessages(accessToken, chat._id)
+  //       await messageController.setTotalUnreadMessage(chat._id, totalUnread)
+  //       setTotalUnreadMessages(totalUnread)
+  //     } catch (error) {
+  //       console.error(error)
+  //     }
+  //   })()
+  // }, [chat._id])
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const totalUnread = await messageController.getTotalUnreadMessages(chat._id)
+  //       setTotalUnreadMessages(totalUnread + 1)
+  //       await messageController.setTotalUnreadMessage(chat._id, totalUnread + 1)
+  //     } catch (error) {
+  //       console.error(error)
+  //     }
+  //   })()
+  // }, [lastMessage])
 
   useEffect(() => {
     (async () => {
@@ -33,7 +59,7 @@ export function ChatItem (props) {
         console.error(error)
       }
     })()
-  }, [chat._id, lastMessage])
+  }, [lastMessage])
 
   useEffect(() => {
     (async () => {
@@ -41,15 +67,27 @@ export function ChatItem (props) {
         const message = await messageController.getLastMessage(accessToken, chat._id)
 
         setSender(message.user === user.id)
+
         if (!isEmpty(message)) setLastMessage(message)
+
+        setIsRead(message?.read)
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     })()
   }, [chat._id])
 
-  const openChat = () => {
-    console.log('Abrir chat ->', chat._id)
+  const openChat = async () => {
+    try {
+      navigate(screens.global.chatScreen)
+      await messageController.updateReadMessages(accessToken, chat._id)
+      await messageController.setTotalUnreadMessage(chat._id, 0)
+      setTotalUnreadMessages(0)
+
+      console.log('Abrir chat ->', chat._id)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   const openCloseDelete = () => setShowDelete(prevState => !prevState)
@@ -67,12 +105,17 @@ export function ChatItem (props) {
   useEffect(() => {
     socket?.emit('subscribe', `${chat._id}_notify`)
     socket?.on('message_notify', newMessage)
+    socket?.emit('subscribe', `${chat._id}_read_notify`)
+    socket?.on('read_notify', ({ read }) => {
+      setIsRead(read)
+      setTotalUnreadMessages(0)
+    })
   }, [])
 
   const newMessage = async (newMessage) => {
-    console.log({ newMessage })
-    setSender(newMessage.user.id === user.id)
+    setSender(newMessage?.user?.id === user?.id)
     setLastMessage(newMessage)
+    setIsRead(newMessage?.read)
   }
 
   return (
@@ -102,6 +145,9 @@ export function ChatItem (props) {
             </Text>
             <Text style={[styles.message, (totalUnreadMessages > 0 && !sender) && styles.unread]} numberOfLines={2}>
               {sender && 'Tú:'} {lastMessage?.message || ''}
+            </Text>
+            <Text style={[styles.message, (totalUnreadMessages > 0 && !sender) && styles.unread]} numberOfLines={2}>
+              {(sender && isRead) && 'visto'}
             </Text>
           </View>
           <View style={styles.details}>
