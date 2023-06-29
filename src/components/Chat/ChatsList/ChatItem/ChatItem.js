@@ -101,7 +101,7 @@ export function ChatItem (props) {
       console.error({ error })
     }
   }
-
+  console.log(user.firstName, accessToken)
   useEffect(() => {
     socket?.emit('subscribe', `${chat._id}_notify`)
     socket?.on('message_notify', newMessage)
@@ -146,9 +146,6 @@ export function ChatItem (props) {
             <Text style={[styles.message, (totalUnreadMessages > 0 && !sender) && styles.unread]} numberOfLines={2}>
               {sender && 'Tú:'} {lastMessage?.message || ''}
             </Text>
-            <Text style={[styles.message, (totalUnreadMessages > 0 && !sender) && styles.unread]} numberOfLines={2}>
-              {(sender && isRead) && 'visto'}
-            </Text>
           </View>
           <View style={styles.details}>
             {lastMessage !== null && (
@@ -162,6 +159,11 @@ export function ChatItem (props) {
                   {totalUnreadMessages < 99 ? totalUnreadMessages : '99'}
                 </Text>
               </View>
+            )}
+            {(sender && isRead) && (
+              <Text style={[styles.readInfo]}>
+                visto
+              </Text>
             )}
           </View>
         </View>

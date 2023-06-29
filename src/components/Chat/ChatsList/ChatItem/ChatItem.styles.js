@@ -44,6 +44,13 @@ export function Styles () {
       right: 5,
       top: 10
     },
+    readInfo: {
+      color: variables.textColorOpacity2,
+      position: 'relative',
+      bottom: -5,
+      left: '50%',
+      fontSize: 15
+    },
     time: {
       color: variables.brandColor,
       fontWeight: '500',

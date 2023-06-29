@@ -5,7 +5,7 @@ export function formatDate (timestamp) {
   const timeDiff = now.getTime() - date.getTime()
   const dayDiff = Math.floor(timeDiff / (1000 * 3600 * 24))
 
-  if (dayDiff === 0) {
+  if (dayDiff <= 0) {
     return date.toLocaleTimeString(['es-CO'], { hour: '2-digit', minute: '2-digit' }) // Hoy: hh:mm
   } else if (dayDiff === 1) {
     return 'Ayer'
