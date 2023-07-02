@@ -28,7 +28,7 @@ export function CreateChatScreen () {
 
   return (
     <View>
-      <Search data={users} setData={setUserResult} />
+      <Search data={users} setData={setUserResult} clear />
       <CreateChat.UsersList users={userResult} />
     </View>
   )

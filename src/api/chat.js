@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ENV } from '../utils'
 
 const { API_URL, ENDPOINTS } = ENV
@@ -69,5 +70,14 @@ export class Chat {
     } catch (error) {
       if (error) throw error
     }
+  }
+
+  async getActiveChat () {
+    const activeChat = await AsyncStorage.getItem(ENV.STORAGE.CHAT_OPEN)
+    return activeChat
+  }
+
+  async setActiveChat (chatId) {
+    await AsyncStorage.setItem(ENV.STORAGE.CHAT_OPEN, chatId)
   }
 }

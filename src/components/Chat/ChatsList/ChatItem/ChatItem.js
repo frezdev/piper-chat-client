@@ -14,7 +14,7 @@ const chatController = new Chat()
 
 export function ChatItem (props) {
   const styles = Styles()
-  const { chat, onReload } = props
+  const { chat, onReload, upTopChat } = props
   const { member_one, member_two } = chat
   const { user, accessToken } = useAuth()
   const [lastMessage, setLastMessage] = useState(null)
@@ -53,9 +53,12 @@ export function ChatItem (props) {
   useEffect(() => {
     (async () => {
       try {
+        setIsRead(lastMessage?.read)
         const totalUnread = await messageController.getUnredMessages(accessToken, chat._id)
-        setTotalUnreadMessages(totalUnread)
-        onReload()
+        const chatActive = await chatController.getActiveChat()
+        if (chatActive !== chat._id) {
+          setTotalUnreadMessages(totalUnread)
+        }
       } catch (error) {
         console.error(error)
       }
@@ -80,9 +83,10 @@ export function ChatItem (props) {
 
   const openChat = async () => {
     try {
-      navigate(screens.global.chatScreen)
+      navigate(screens.global.chatScreen, { chatId: chat._id })
       await messageController.updateReadMessages(accessToken, chat._id)
       await messageController.setTotalUnreadMessage(chat._id, 0)
+      await chatController.setActiveChat(chat._id)
       setTotalUnreadMessages(0)
 
       console.log('Abrir chat ->', chat._id)
@@ -119,6 +123,7 @@ export function ChatItem (props) {
   const newMessage = async (newMessage) => {
     setSender(newMessage?.user?.id === user?.id)
     if (newMessage?.chat === chat._id) {
+      upTopChat(newMessage?.chat)
       setLastMessage(newMessage)
       setIsRead(newMessage?.read)
     }

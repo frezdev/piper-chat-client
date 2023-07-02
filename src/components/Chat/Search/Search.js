@@ -7,15 +7,21 @@ import { Styles } from './Search.styles'
 const KEYS_TO_FILTER = [
   'email',
   'firstName',
-  'lastName'
+  'lastName',
+  'member_one.email',
+  'member_one.firstName',
+  'member_one.lastName',
+  'member_two.email',
+  'member_two.firstName',
+  'member_two.lastName'
 ]
 
 export function Search (props) {
   const styles = Styles()
-  const { data, setData } = props
+  const { data, setData, clear } = props
 
   const onSearch = (text) => {
-    if (text === '') return setData([])
+    if ((text === '') && clear) return setData([])
     const resultSearch = data?.filter(
       createFilter(text, KEYS_TO_FILTER)
     )

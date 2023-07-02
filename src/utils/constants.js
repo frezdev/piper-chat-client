@@ -29,7 +29,8 @@ export const ENV = {
   },
   STORAGE: {
     USER: 'user',
-    COLOR_THEME: 'colorTheme'
+    COLOR_THEME: 'colorTheme',
+    CHAT_OPEN: 'CHAT_OPEN'
   },
   SUPABASE_API_KEY,
   SUPABASE_URL,
