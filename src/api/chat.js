@@ -72,12 +72,33 @@ export class Chat {
     }
   }
 
+  async obtain (token, chat_id) {
+    try {
+      const url = `${API_URL}/${ENDPOINTS.CHAT}/${chat_id}`
+      const params = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+
+      const response = await fetch(url, params)
+      const result = await response.json()
+
+      if (response.status !== 200) throw result
+
+      return result
+    } catch (error) {
+      if (error) throw error
+    }
+  }
+
   async getActiveChat () {
     const activeChat = await AsyncStorage.getItem(ENV.STORAGE.CHAT_OPEN)
     return activeChat
   }
 
-  async setActiveChat (chatId) {
-    await AsyncStorage.setItem(ENV.STORAGE.CHAT_OPEN, chatId)
+  async setActiveChat (chat_id) {
+    await AsyncStorage.setItem(ENV.STORAGE.CHAT_OPEN, chat_id)
   }
 }
