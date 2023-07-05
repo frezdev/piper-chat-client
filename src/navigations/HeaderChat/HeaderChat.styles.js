@@ -8,7 +8,8 @@ export function Styles () {
     container: {
       backgroundColor: variables.secundaryBackground,
       marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-      height: 80
+      height: Platform.OS === 'android' ? 65 : 80,
+      paddingHorizontal: 2
     },
     content: {
       flex: 1,
@@ -20,6 +21,12 @@ export function Styles () {
     info: {
       flexDirection: 'row',
       alignItems: 'center'
+    },
+    identity: {
+      color: variables.textColorNormal,
+      marginHorizontal: 5,
+      fontSize: 16,
+      fontWeight: 'bold'
     },
     deleteIcon: {
       color: variables.brandColor
