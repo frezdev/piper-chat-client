@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import { ChatMessage, Chat } from '../../api'
 import { useAuth } from '../../hooks'
-import { HeaderChat } from '../../navigations/HeaderChat/HeaderChat'
+import { HeaderChat } from '../../components/Navigation/HeaderChat'
 
 const messageController = new ChatMessage()
 const chatController = new Chat()

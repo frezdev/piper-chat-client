@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { View, Text, SafeAreaView, Pressable } from 'react-native'
-import { IconButton, ChevronLeftIcon, DeleteIcon, Avatar } from 'native-base'
-import { Chat } from '../../api'
-import { useAuth } from '../../hooks'
-import { ENV } from '../../utils'
-import { IconBack } from '../../components/Navigation/IconBack'
+import { IconButton, DeleteIcon, Avatar } from 'native-base'
+import { Chat } from '../../../api'
+import { useAuth } from '../../../hooks'
+import { ENV } from '../../../utils'
+import { AlertConfirm } from '../../Shared'
+import { IconBack } from '../IconBack'
 import { Styles } from './HeaderChat.styles'
 
 const chatController = new Chat()
@@ -12,6 +13,7 @@ const chatController = new Chat()
 export function HeaderChat (props) {
   const { chatId } = props
   const [userChat, setUserChat] = useState()
+  const [showDelete, setShowDelete] = useState(false)
   const { accessToken, user } = useAuth()
   const styles = Styles()
 
@@ -26,6 +28,16 @@ export function HeaderChat (props) {
       setUserChat(otherUser)
     })()
   }, [chatId])
+
+  const openCloseDelete = () => setShowDelete(!showDelete)
+
+  const deleteChat = async () => {
+    try {
+
+    } catch (error) {
+      console, error(error)
+    }
+  }
 
   return (
     <>
@@ -57,10 +69,25 @@ export function HeaderChat (props) {
             )}
           </View>
           <View>
-            <IconButton icon={<DeleteIcon style={styles.deleteIcon} />} padding={2} />
+            <IconButton
+              icon={<DeleteIcon style={styles.deleteIcon} />}
+              onPress={openCloseDelete}
+              padding={2}
+            />
           </View>
         </View>
       </SafeAreaView>
+      {
+        <AlertConfirm
+          show={showDelete}
+          title='Eliminar chat'
+          onClose={openCloseDelete}
+          message='¿Estas seguro?'
+          isDanger
+          onConfirm={() => {}}
+          textConfirm='Eliminar'
+        />
+      }
     </>
   )
 }
