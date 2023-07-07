@@ -30,7 +30,7 @@ export class User {
 
   async getAll (accessToken) {
     try {
-      const url = `${API_URL}/${ENDPOINTS.USER.ALL_USERS}`
+      const url = `${API_URL}/${ENDPOINTS.USER.USERS}`
       const params = {
         headers: {
           Authorization: `Bearer ${accessToken}`
@@ -76,6 +76,27 @@ export class User {
 
       if (response.status !== 200) throw result
       this.setUserStorage(result)
+      return result
+    } catch (error) {
+      if (error) {
+        throw error
+      }
+    }
+  }
+
+  async getOneUser (accessToken, userId) {
+    try {
+      const url = `${API_URL}/${ENDPOINTS.USER.USERS}/${userId}`
+      const params = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+      const response = await fetch(url, params)
+      const result = await response.json()
+
+      if (response.status !== 200) throw result
+
       return result
     } catch (error) {
       if (error) {

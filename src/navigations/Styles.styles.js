@@ -28,7 +28,9 @@ export function Styles () {
       },
       headerTitleStyle: {
         color: variables.textColorNormal
-      }
+      },
+      animation: 'slide_from_right',
+      headerTitleAlign: 'center'
     }
   })
 }
