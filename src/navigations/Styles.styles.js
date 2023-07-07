@@ -21,13 +21,13 @@ export function Styles () {
     },
     modalStyles: {
       contentStyle: {
-        backgroundColor: '#171717'
+        backgroundColor: variables.appBackground
       },
       headerStyle: {
-        backgroundColor: '#171717'
+        backgroundColor: variables.secundaryBackground
       },
       headerTitleStyle: {
-        color: '#fff'
+        color: variables.textColorNormal
       }
     }
   })

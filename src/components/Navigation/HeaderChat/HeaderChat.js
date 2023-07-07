@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { View, Text, SafeAreaView, Pressable } from 'react-native'
 import { IconButton, DeleteIcon, Avatar } from 'native-base'
+import { useNavigation } from '@react-navigation/native'
 import { Chat } from '../../../api'
 import { useAuth } from '../../../hooks'
-import { ENV } from '../../../utils'
+import { ENV, screens } from '../../../utils'
 import { AlertConfirm } from '../../Shared'
 import { IconBack } from '../IconBack'
 import { Styles } from './HeaderChat.styles'
@@ -15,6 +16,7 @@ export function HeaderChat (props) {
   const [userChat, setUserChat] = useState()
   const [showDelete, setShowDelete] = useState(false)
   const { accessToken, user } = useAuth()
+  const navigation = useNavigation()
   const styles = Styles()
 
   useEffect(() => {
@@ -33,10 +35,16 @@ export function HeaderChat (props) {
 
   const deleteChat = async () => {
     try {
-
+      await chatController.deleteChat(accessToken, chatId)
+      openCloseDelete()
+      navigation.goBack()
     } catch (error) {
-      console, error(error)
+      console.error(error)
     }
+  }
+
+  const goToUserProfile = () => {
+    navigation.navigate(screens.global.userProfileScreen)
   }
 
   return (
@@ -47,7 +55,7 @@ export function HeaderChat (props) {
             <IconBack />
 
             {userChat && (
-              <Pressable style={styles.info} onPress={() => console.log('go to info')}>
+              <Pressable style={styles.info} onPress={goToUserProfile}>
                 <Avatar
                   style={styles.avatar}
                   bg={'lightBlue.600'}
@@ -84,7 +92,7 @@ export function HeaderChat (props) {
           onClose={openCloseDelete}
           message='¿Estas seguro?'
           isDanger
-          onConfirm={() => {}}
+          onConfirm={deleteChat}
           textConfirm='Eliminar'
         />
       }

@@ -8,6 +8,7 @@ import {
   UpdateGroupInfoScreen,
   AddParticipantsToGroupScreen
 } from '../screens/Groups'
+import { IconBack } from '../components/Navigation'
 import { screens, initSockets } from '../utils'
 import { Styles } from './Styles.styles'
 
@@ -40,7 +41,10 @@ export function AppNavigation () {
         <Stack.Screen
           name={screens.global.userProfileScreen}
           component={UserProfileScreen}
-          options={{ title: 'Información' }}
+          options={{
+            title: 'Información',
+            headerLeft: IconBack
+          }}
         />
 
         <Stack.Screen
