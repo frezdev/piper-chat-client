@@ -9,7 +9,6 @@ export function UserInfo (props) {
   return (
     <View style={styles.content}>
       <Avatar
-        bg='gray.400'
         size='2xl'
         style={styles.avatar}
         source={{ uri: user.avatar && `${ENV.IMAGES_URL}/${user.avatar}` }}

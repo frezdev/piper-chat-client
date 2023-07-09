@@ -18,6 +18,9 @@ export function Styles () {
       justifyContent: 'space-between',
       paddingHorizontal: 5
     },
+    avatar: {
+      backgroundColor: variables.brandColor
+    },
     info: {
       flexDirection: 'row',
       alignItems: 'center'

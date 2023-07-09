@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { Avatar } from 'native-base'
 import { isEmpty } from 'lodash'
-import { useAuth } from '../../../../hooks'
+import { useAuth, useCurrentChat } from '../../../../hooks'
 import { AlertConfirm } from '../../../Shared'
 import { ChatMessage, Chat } from '../../../../api'
 import { ENV, formatDate, socket, screens } from '../../../../utils'
@@ -17,6 +17,8 @@ export function ChatItem (props) {
   const { chat, onReload, upTopChat } = props
   const { member_one, member_two } = chat
   const { user, accessToken } = useAuth()
+  const { updateUsertChat } = useCurrentChat()
+
   const [lastMessage, setLastMessage] = useState(null)
   const [sender, setSender] = useState(null)
   const [totalUnreadMessages, setTotalUnreadMessages] = useState(0)
@@ -83,13 +85,12 @@ export function ChatItem (props) {
 
   const openChat = async () => {
     try {
+      updateUsertChat(userChat)
       navigate(screens.global.chatScreen, { chatId: chat._id })
       await messageController.updateReadMessages(accessToken, chat._id)
       await messageController.setTotalUnreadMessage(chat._id, 0)
       await chatController.setActiveChat(chat._id)
       setTotalUnreadMessages(0)
-
-      console.log('Abrir chat ->', chat._id)
     } catch (error) {
       console.error(error)
     }
@@ -121,8 +122,8 @@ export function ChatItem (props) {
   }, [])
 
   const newMessage = async (newMessage) => {
-    setSender(newMessage?.user?.id === user?.id)
     if (newMessage?.chat === chat._id) {
+      setSender(newMessage?.user?.id === user?.id)
       upTopChat(newMessage?.chat)
       setLastMessage(newMessage)
       setIsRead(newMessage?.read)
@@ -155,7 +156,7 @@ export function ChatItem (props) {
               }
             </Text>
             <Text style={[styles.message, (totalUnreadMessages > 0 && !sender) && styles.unread]} numberOfLines={2}>
-              {sender && 'Tú:'} {lastMessage?.message || ''}
+              {(sender && lastMessage) && 'Tú:'} {lastMessage?.message || ''}
             </Text>
           </View>
           <View style={styles.details}>

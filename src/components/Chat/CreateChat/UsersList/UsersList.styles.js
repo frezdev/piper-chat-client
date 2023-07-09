@@ -14,6 +14,9 @@ export function Styles () {
       alignItems: 'center',
       height: 80
     },
+    avatar: {
+      backgroundColor: variables.brandColor
+    },
     info: {
       borderBottomWidth: 1,
       flexDirection: 'column',

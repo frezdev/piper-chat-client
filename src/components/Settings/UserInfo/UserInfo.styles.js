@@ -8,7 +8,8 @@ export function Styles () {
       alignItems: 'center'
     },
     avatar: {
-      marginTop: 20
+      marginTop: 20,
+      backgroundColor: variables.brandColor
     },
     identity: {
       color: variables.textColorOpacity,

@@ -4,26 +4,30 @@ import { Avatar } from 'native-base'
 import { useNavigation } from '@react-navigation/native'
 import { map } from 'lodash'
 import { Chat } from '../../../../api/chat'
-import { useAuth } from '../../../../hooks'
-import { ENV } from '../../../../utils'
+import { /* useAuth, */ useCurrentChat } from '../../../../hooks'
+import { ENV, screens } from '../../../../utils'
 import { Styles } from './UsersList.styles'
 
-const chatController = new Chat()
+// const chatController = new Chat()
 
 export function UsersList (props) {
   const { users } = props
-  const auth = useAuth()
+  // const auth = useAuth()
+  const { updateUsertChat } = useCurrentChat()
   const styles = Styles()
 
-  const { goBack } = useNavigation()
+  const { navigate, goBack } = useNavigation()
 
   const createChat = async (user) => {
-    try {
-      const response = await chatController.create(auth.accessToken, auth.user.id, user.id)
-      console.log(response)
-    } catch (error) {
-      console.log({ error })
-    }
+    updateUsertChat(user)
+    navigate(screens.global.chatScreen)
+    goBack()
+    // try {
+    //   const response = await chatController.create(auth.accessToken, auth.user.id, user.id)
+    //   console.log(response)
+    // } catch (error) {
+    //   console.log({ error })
+    // }
   }
   return (
     <ScrollView style={styles.content}>
@@ -37,7 +41,7 @@ export function UsersList (props) {
 
             <View style={{ paddingVertical: 7 }}>
               <Avatar
-                bg={'lightBlue.600'}
+                style={styles.avatar}
                 marginRight={4}
                 marginX={2}
                 size='lg'

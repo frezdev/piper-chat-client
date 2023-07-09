@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import { ChatMessage, Chat } from '../../api'
 import { useAuth } from '../../hooks'
@@ -9,9 +9,8 @@ const messageController = new ChatMessage()
 const chatController = new Chat()
 
 export function ChatScreen () {
-  const { params: { chatId } } = useRoute()
+  const { params } = useRoute()
   const { accessToken } = useAuth()
-  console.log(chatId)
 
   useEffect(() => {
     (async () => {
@@ -31,7 +30,7 @@ export function ChatScreen () {
   }, [])
   return (
     <>
-      <HeaderChat chatId={chatId} />
+      <HeaderChat chatId={params?.chatId || null} />
       <View>
         <Text>ChatScreen</Text>
       </View>

@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, Pressable } from 'react-native'
 import { IconButton, DeleteIcon, Avatar } from 'native-base'
 import { useNavigation } from '@react-navigation/native'
 import { Chat } from '../../../api'
-import { useAuth } from '../../../hooks'
+import { useAuth, useCurrentChat } from '../../../hooks'
 import { ENV, screens } from '../../../utils'
 import { AlertConfirm } from '../../Shared'
 import { IconBack } from '../IconBack'
@@ -15,21 +15,15 @@ export function HeaderChat (props) {
   const { chatId } = props
   const [userChat, setUserChat] = useState()
   const [showDelete, setShowDelete] = useState(false)
-  const { accessToken, user } = useAuth()
+  const { accessToken } = useAuth()
+  const { currentChat } = useCurrentChat()
+
   const navigation = useNavigation()
   const styles = Styles()
 
   useEffect(() => {
-    (async () => {
-      const response = await chatController.obtain(accessToken, chatId)
-      const otherUser =
-        user?.id !== response?.member_one?.id
-          ? response?.member_one
-          : response?.member_two
-
-      setUserChat(otherUser)
-    })()
-  }, [chatId])
+    setUserChat(currentChat.userTwo)
+  }, [])
 
   const openCloseDelete = () => setShowDelete(!showDelete)
 
@@ -58,7 +52,6 @@ export function HeaderChat (props) {
               <Pressable style={styles.info} onPress={goToUserProfile}>
                 <Avatar
                   style={styles.avatar}
-                  bg={'lightBlue.600'}
                   marginRight={7}
                   marginX={2}
                   size='md'
@@ -77,11 +70,13 @@ export function HeaderChat (props) {
             )}
           </View>
           <View>
-            <IconButton
-              icon={<DeleteIcon style={styles.deleteIcon} />}
-              onPress={openCloseDelete}
-              padding={2}
-            />
+            {chatId && (
+              <IconButton
+                icon={<DeleteIcon style={styles.deleteIcon} />}
+                onPress={openCloseDelete}
+                padding={2}
+              />
+            )}
           </View>
         </View>
       </SafeAreaView>
