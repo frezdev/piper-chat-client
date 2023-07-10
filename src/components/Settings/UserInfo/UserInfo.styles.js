@@ -18,6 +18,7 @@ export function Styles () {
       fontWeight: 'bold'
     },
     email: {
+      marginTop: 5,
       color: variables.textColorOpacity
     }
   })
