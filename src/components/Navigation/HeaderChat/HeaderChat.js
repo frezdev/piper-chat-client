@@ -63,7 +63,7 @@ export function HeaderChat (props) {
                   {
                     (userChat?.firstName || userChat?.lastName)
                       ? `${userChat?.firstName} ${userChat?.lastName}`
-                      : userChat?.email
+                      : userChat?.email.split('@').at(0)
                   }
                 </Text>
               </Pressable>
