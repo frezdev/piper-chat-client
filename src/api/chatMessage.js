@@ -3,9 +3,9 @@ import { ENV } from '../utils'
 const { API_URL, ENDPOINTS } = ENV
 
 export class ChatMessage {
-  async getLastMessage (token, chat_id) {
+  async getLastMessage (token, chatId) {
     try {
-      const url = `${API_URL}/${ENDPOINTS.CHAT_MESSAGE.LAST}/${chat_id}`
+      const url = `${API_URL}/${ENDPOINTS.CHAT_MESSAGE.LAST}/${chatId}`
       const params = {
         headers: {
           Authorization: `Bearer ${token}`
@@ -22,9 +22,9 @@ export class ChatMessage {
     }
   }
 
-  async getTotalMessages (token, chat_id) {
+  async getTotalMessages (token, chatId) {
     try {
-      const url = `${API_URL}/${ENDPOINTS.CHAT_MESSAGE.TOTAL}/${chat_id}`
+      const url = `${API_URL}/${ENDPOINTS.CHAT_MESSAGE.TOTAL}/${chatId}`
       const params = {
         headers: {
           Authorization: `Bearer ${token}`
@@ -41,9 +41,9 @@ export class ChatMessage {
     }
   }
 
-  async getUnredMessages (token, chat_id) {
+  async getUnredMessages (token, chatId) {
     try {
-      const url = `${API_URL}/${ENDPOINTS.CHAT_MESSAGE.UNREAD}/${chat_id}`
+      const url = `${API_URL}/${ENDPOINTS.CHAT_MESSAGE.UNREAD}/${chatId}`
       const params = {
         headers: {
           Authorization: `Bearer ${token}`
@@ -60,9 +60,9 @@ export class ChatMessage {
     }
   }
 
-  async updateReadMessages (token, chat_id) {
+  async updateReadMessages (token, chatId) {
     try {
-      const url = `${API_URL}/${ENDPOINTS.CHAT_MESSAGE.UPDATE}/${chat_id}`
+      const url = `${API_URL}/${ENDPOINTS.CHAT_MESSAGE.UPDATE}/${chatId}`
       const params = {
         method: 'PATCH',
         headers: {
@@ -80,12 +80,31 @@ export class ChatMessage {
     }
   }
 
-  async setTotalUnreadMessage (chat_id, count) {
-    await AsyncStorage.setItem(`${chat_id}_unread`, JSON.stringify(count))
+  async getAllMessage (token, chatId) {
+    try {
+      const url = `${API_URL}/${ENDPOINTS.CHAT_MESSAGE.MESSAGES}/${chatId}`
+      const params = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+
+      const response = await fetch(url, params)
+      const result = await response.json()
+
+      if (response.status !== 200 && response.status !== 300) throw result
+      return result
+    } catch (error) {
+      if (error) throw error
+    }
   }
 
-  async getTotalUnreadMessages (chat_id) {
-    const response = await AsyncStorage.getItem(`${chat_id}_unread`)
+  async setTotalUnreadMessage (chatId, count) {
+    await AsyncStorage.setItem(`${chatId}_unread`, JSON.stringify(count))
+  }
+
+  async getTotalUnreadMessages (chatId) {
+    const response = await AsyncStorage.getItem(`${chatId}_unread`)
     return Number(response)
   }
 }

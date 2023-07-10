@@ -17,6 +17,7 @@ export const ENV = {
     },
     CHAT: 'chats',
     CHAT_MESSAGE: {
+      MESSAGES: 'chat/messages',
       LAST: 'chat/messages/last',
       TOTAL: 'chat/messages/total',
       UNREAD: 'chat/messages/unread',

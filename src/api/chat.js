@@ -51,9 +51,9 @@ export class Chat {
     }
   }
 
-  async deleteChat (token, chat_id) {
+  async deleteChat (token, chatId) {
     try {
-      const url = `${API_URL}/${ENDPOINTS.CHAT}/${chat_id}`
+      const url = `${API_URL}/${ENDPOINTS.CHAT}/${chatId}`
       const params = {
         method: 'DELETE',
         headers: {
@@ -72,9 +72,9 @@ export class Chat {
     }
   }
 
-  async obtain (token, chat_id) {
+  async obtain (token, chatId) {
     try {
-      const url = `${API_URL}/${ENDPOINTS.CHAT}/${chat_id}`
+      const url = `${API_URL}/${ENDPOINTS.CHAT}/${chatId}`
       const params = {
         method: 'GET',
         headers: {
@@ -98,7 +98,7 @@ export class Chat {
     return activeChat
   }
 
-  async setActiveChat (chat_id) {
-    await AsyncStorage.setItem(ENV.STORAGE.CHAT_OPEN, chat_id)
+  async setActiveChat (chatId) {
+    await AsyncStorage.setItem(ENV.STORAGE.CHAT_OPEN, chatId)
   }
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { View, Text, SafeAreaView, Pressable } from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import { IconButton, DeleteIcon, Avatar } from 'native-base'
 import { useNavigation } from '@react-navigation/native'
 import { Chat } from '../../../api'
@@ -49,7 +49,7 @@ export function HeaderChat (props) {
             <IconBack />
 
             {userChat && (
-              <Pressable style={styles.info} onPress={goToUserProfile}>
+              <TouchableOpacity style={styles.info} onPress={goToUserProfile}>
                 <Avatar
                   style={styles.avatar}
                   marginRight={7}
@@ -66,7 +66,7 @@ export function HeaderChat (props) {
                       : userChat?.email.split('@').at(0)
                   }
                 </Text>
-              </Pressable>
+              </TouchableOpacity>
             )}
           </View>
           <View>

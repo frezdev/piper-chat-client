@@ -20,7 +20,7 @@ export function UserInfo (props) {
         {
           user?.firstName || user?.lastName
             ? `${user?.firstName} ${user?.lastName}`
-            : `${user?.email.split('@').at(0)}`
+            : user?.email.split('@').at(0)
         }
       </Text>
       <Text style={styles.email}>{user?.email}</Text>
