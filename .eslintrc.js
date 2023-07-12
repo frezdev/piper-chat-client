@@ -18,6 +18,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/no-unescaped-entities': 'off',
-    camelcase: 'off'
+    camelcase: 'off',
+    'array-callback-return': 'off'
   }
 }
