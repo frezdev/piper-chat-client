@@ -6,7 +6,7 @@ export function Styles () {
 
   return StyleSheet.create({
     container: {
-      backgroundColor: variables.secundaryBackground,
+      backgroundColor: variables.appBackground,
       paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
       height: Platform.OS === 'android' ? 85 : 80,
       paddingHorizontal: 2
