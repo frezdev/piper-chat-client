@@ -4,8 +4,9 @@ import { View } from 'native-base'
 import { useRoute } from '@react-navigation/native'
 import { ChatMessage, Chat } from '../../api'
 import { useAuth } from '../../hooks'
-import { HeaderChat } from '../../components/Navigation/HeaderChat'
+import { HeaderChat } from '../../components/Navigation'
 import { LoadingScreen } from '../../components/Shared'
+import { MessagesList } from '../../components/Chat'
 
 const messageController = new ChatMessage()
 const chatController = new Chat()
@@ -56,13 +57,12 @@ export function ChatScreen () {
     <>
       <HeaderChat chatId={params?.chatId || null} />
       {conditionalRender()}
-      {chatMessages?.length > 0 &&
-        (
+
+      {chatMessages?.length > 0 && (
           <View flex>
-            <Text>ChatScreen</Text>
+            <MessagesList messages={chatMessages} />
           </View>
-        )
-      }
+      )}
     </>
   )
 }
