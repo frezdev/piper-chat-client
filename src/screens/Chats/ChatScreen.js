@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
+import { View } from 'native-base'
 import { useRoute } from '@react-navigation/native'
 import { ChatMessage, Chat } from '../../api'
 import { useAuth } from '../../hooks'
@@ -13,13 +14,16 @@ export function ChatScreen () {
   const { params } = useRoute()
   const { accessToken } = useAuth()
 
-  const [messages, setMessages] = useState(null)
+  const [chatMessages, setChatMessages] = useState(null)
 
   useEffect(() => {
     (async () => {
       try {
-        const response = await messageController.getAllMessage(accessToken, params?.chatId)
-        setMessages(response)
+        if (params?.chatId) {
+          const { messages } = await messageController.getAllMessage(accessToken, params?.chatId)
+          return setChatMessages(messages)
+        }
+        setChatMessages([])
       } catch (error) {
         console.error(error)
       }
@@ -27,32 +31,37 @@ export function ChatScreen () {
   }, [])
 
   useEffect(() => {
-    (async () => {
+    return async () => {
       try {
         const chatActive = await chatController.getActiveChat()
         if (chatActive) {
           await messageController.updateReadMessages(accessToken, chatActive)
+          await chatController.setActiveChat('')
         }
       } catch (error) {
         console.error(error)
       }
-    })()
-
-    return async () => {
-      await chatController.setActiveChat('')
     }
   }, [])
+
+  const conditionalRender = () => {
+    if (!params?.chatId) return <Text>Se el primero en enviar un mensaje</Text>
+    if (chatMessages?.length < 1) return <Text>Aún no hay mensajes</Text>
+    if (chatMessages === null) return <LoadingScreen />
+
+    return null
+  }
 
   return (
     <>
       <HeaderChat chatId={params?.chatId || null} />
-      {!messages
-        ? <LoadingScreen />
-        : (
-            <View>
-              <Text>ChatScreen</Text>
-            </View>
-          )
+      {conditionalRender()}
+      {chatMessages?.length > 0 &&
+        (
+          <View flex>
+            <Text>ChatScreen</Text>
+          </View>
+        )
       }
     </>
   )
