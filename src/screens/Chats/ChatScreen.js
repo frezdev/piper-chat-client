@@ -7,11 +7,13 @@ import { useAuth } from '../../hooks'
 import { HeaderChat } from '../../components/Navigation'
 import { LoadingScreen } from '../../components/Shared'
 import { MessagesList } from '../../components/Chat'
+import { Styles } from './styles'
 
 const messageController = new ChatMessage()
 const chatController = new Chat()
 
 export function ChatScreen () {
+  const styles = Styles()
   const { params } = useRoute()
   const { accessToken } = useAuth()
 
@@ -59,7 +61,7 @@ export function ChatScreen () {
       {conditionalRender()}
 
       {chatMessages?.length > 0 && (
-          <View flex>
+          <View flex style={styles.content}>
             <MessagesList messages={chatMessages} />
           </View>
       )}
