@@ -156,7 +156,7 @@ export function ChatItem (props) {
               }
             </Text>
             <Text style={[styles.message, (totalUnreadMessages > 0 && !sender) && styles.unread]} numberOfLines={2}>
-              {(sender && lastMessage) && 'Tú:'} {lastMessage?.message || ''}
+              {(sender && lastMessage) && 'Tú:'} {lastMessage?.type === 'TEXT' ? lastMessage?.message : '📷 Foto'}
             </Text>
           </View>
           <View style={styles.details}>
