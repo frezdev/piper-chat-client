@@ -18,8 +18,11 @@ export function Styles (isMe) {
       backgroundColor: isMe ? variables.myMessageBg : variables.anotherMessageBg,
       paddingVertical: 8,
       shadowOpacity: 1,
-      shadowOffset: 'y',
-      shadowColor: variables.inputBg,
+      shadowOffset: {
+        width: 1,
+        height: 1
+      },
+      shadowColor: variables.messageShadow,
       paddingHorizontal: 12,
       borderRadius: 10
     },
