@@ -13,8 +13,11 @@ export function Variables () {
     appBackground: dark ? '#000' : '#fff',
     borderColor: dark ? '#343434' : '#d0d0d0',
     inputBg: dark ? '#a5a5a53b' : '#a5a5a52b',
-    myMessageBg: dark ? '#00629a' : '#00a2ff',
-    anotherMessageBg: dark ? '#343434' : '#fff'
+    myMessageBg: dark ? '#00629a' : '#5bc3ff',
+    messageShadow: dark ? '#000' : '#d0d0d0',
+    anotherMessageBg: dark ? '#33383c' : '#fff',
+    chatBgImage: dark ? 0.2 : 1,
+    chatBg: dark ? '#0e0e0e' : '#eaeaea'
   }
   return variables
 }
