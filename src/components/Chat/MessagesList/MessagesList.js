@@ -5,7 +5,6 @@ import { styles } from './MessagesList.styles'
 
 export function MessagesList (props) {
   const { messages } = props
-  console.log(messages.at(-3))
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
