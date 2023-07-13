@@ -6,7 +6,11 @@ export const Styles = () => {
 
   return StyleSheet.create({
     content: {
-      backgroundColor: variables.secundaryBackground
+      backgroundColor: variables.chatBg
+    },
+    image: {
+      position: 'absolute',
+      opacity: variables.chatBgImage
     }
   })
 }

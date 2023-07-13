@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Text } from 'react-native'
+import { Text, Image } from 'react-native'
 import { View } from 'native-base'
 import { useRoute } from '@react-navigation/native'
 import { ChatMessage, Chat } from '../../api'
@@ -7,6 +7,7 @@ import { useAuth } from '../../hooks'
 import { HeaderChat } from '../../components/Navigation'
 import { LoadingScreen } from '../../components/Shared'
 import { MessagesList } from '../../components/Chat'
+import { images } from '../../assets/img'
 import { Styles } from './styles'
 
 const messageController = new ChatMessage()
@@ -58,13 +59,13 @@ export function ChatScreen () {
   return (
     <>
       <HeaderChat chatId={params?.chatId || null} />
-      {conditionalRender()}
-
-      {chatMessages?.length > 0 && (
-          <View flex style={styles.content}>
-            <MessagesList messages={chatMessages} />
-          </View>
-      )}
+        <View flex style={styles.content}>
+          <Image source={images.chatBgImage} style={styles.image}/>
+          {chatMessages?.length > 0
+            ? <MessagesList messages={chatMessages} />
+            : conditionalRender()
+          }
+        </View>
     </>
   )
 }
