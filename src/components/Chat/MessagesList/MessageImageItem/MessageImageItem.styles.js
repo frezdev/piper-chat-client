@@ -15,9 +15,14 @@ export function Styles (isMe) {
     message: {
       maxWidth: '80%',
       minWidth: 180,
-      backgroundColor: isMe ? variables.messageBg : variables.borderColor,
-      paddingVertical: 8,
-      paddingHorizontal: 12,
+      backgroundColor: isMe ? variables.myMessageBg : variables.anotherMessageBg,
+      padding: 5,
+      shadowOpacity: 1,
+      shadowOffset: {
+        width: 1,
+        height: 1
+      },
+      shadowColor: variables.messageShadow,
       borderRadius: 10
     },
     text: {

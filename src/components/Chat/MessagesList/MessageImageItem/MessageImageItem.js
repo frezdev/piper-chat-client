@@ -1,5 +1,6 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import { useAuth } from '../../../../hooks'
+import { ENV } from '../../../../utils'
 import { Styles } from './MessageImageItem.styles'
 
 export function MessageImageItem ({ message }) {
@@ -9,7 +10,8 @@ export function MessageImageItem ({ message }) {
   return (
     <View style={styles.content}>
       <View style={styles.message}>
-        <Text style={styles.text}>{message.message}</Text>
+        <Image source={{ uri: `${ENV.IMAGES_URL}/${message.user.avatar}` }} style={{ width: 230, height: 300, borderRadius: 5 }} />
+        {/* <Text style={styles.text} selectable>{`${ENV.IMAGES_URL}/${message.user.avatar}`}</Text> */}
       </View>
     </View>
   )
