@@ -9,7 +9,7 @@ export function formatDate (timestamp) {
     return date.toLocaleTimeString(['es-CO'], { hour: '2-digit', minute: '2-digit' }) // Hoy: hh:mm
   } else if (dayDiff === 1) {
     return 'Ayer'
-  } else if (dayDiff >= 2 && dayDiff <= 7) {
+  } else if (dayDiff >= 2 && dayDiff < 7) {
     const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
     return daysOfWeek[date.getDay()]
   } else {
