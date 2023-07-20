@@ -5,6 +5,6 @@ export const styles = StyleSheet.create({
 
   },
   content: {
-
+    paddingVertical: 10
   }
 })

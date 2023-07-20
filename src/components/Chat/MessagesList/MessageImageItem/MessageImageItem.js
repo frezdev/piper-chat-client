@@ -3,10 +3,10 @@ import { useAuth } from '../../../../hooks'
 import { ENV } from '../../../../utils'
 import { Styles } from './MessageImageItem.styles'
 
-export function MessageImageItem ({ message }) {
+export function MessageImageItem ({ message, nextIsMy }) {
   const { user } = useAuth()
   const isMe = user.id === message.user.id
-  const styles = Styles(isMe)
+  const styles = Styles(isMe, nextIsMy)
   return (
     <View style={styles.content}>
       <View style={styles.message}>

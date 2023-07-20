@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { Variables } from '../../../../styles/variables.styles'
 
-export function Styles (isMe) {
+export function Styles (isMe, nextIsMy) {
   const variables = Variables()
 
   return StyleSheet.create({
@@ -10,7 +10,7 @@ export function Styles (isMe) {
       flexDirection: 'row',
       justifyContent: isMe ? 'flex-end' : 'flex-start',
       marginHorizontal: 10,
-      marginVertical: 5
+      marginBottom: nextIsMy ? 3 : 10
     },
     message: {
       maxWidth: '80%',
