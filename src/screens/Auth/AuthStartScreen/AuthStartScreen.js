@@ -30,7 +30,7 @@ export function AuthStartScreen () {
       </View>
       <View>
         <Text style={styles.credits}>
-          Desarrollado con 💙 por @ancoder
+          Desarrollado con 💙 por @frezdev
         </Text>
       </View>
     </SafeAreaView>
