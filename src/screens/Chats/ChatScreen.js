@@ -59,7 +59,7 @@ export function ChatScreen () {
   return (
     <>
       <HeaderChat chatId={params?.chatId || null} />
-        <View flex style={styles.content}>
+        <View style={styles.content}>
           <Image source={images.chatBgImage} style={styles.image}/>
           {chatMessages?.length > 0
             ? <MessagesList messages={chatMessages} />
