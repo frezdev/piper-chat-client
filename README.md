@@ -1,5 +1,7 @@
 # PiperChat
 
+Aplicación de mensajería instantánea desarrollada con React Native. Utiliza Socket.io para el envio de datos en tiempo real
+
 ## Screnshots
 <div>
   <img src="https://raw.githubusercontent.com/frezdev/piper-chat-client/main/demo/Screenshot_1707664587.png" width="200px"/>
